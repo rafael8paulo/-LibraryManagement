@@ -1,4 +1,3 @@
 # -LibraryManagement
 
-Trabalho de Engenharia II 
-Nesse trabalho nó amamos a Professora Cassia 
+Trabalho de Engenharia II
