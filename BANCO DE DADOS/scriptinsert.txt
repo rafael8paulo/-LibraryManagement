@@ -1,0 +1,52 @@
+insert into usuarios(usu_login, usu_senha, usu_data, per_cod) 
+values('Vinicius','123','2021-10-29',1);
+insert into usuarios(usu_login, usu_senha, usu_data, per_cod) 
+values('Rafael','123','2021-10-29',1);
+insert into usuarios(usu_login, usu_senha, usu_data, per_cod) 
+values('Gustavo','123','2021-10-29',1);
+insert into usuarios(usu_login, usu_senha, usu_data, per_cod) 
+values('Emanuel','123','2021-10-29',1);
+insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
+values('Administrador','S','N','S','S','S');
+insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
+values('Financeiro','S','N','S','S','S');
+insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
+values('Estoque','S','N','S','N','S');
+
+insert into autor(aut_nome) values('Clarice Lispector');
+insert into autor(aut_nome) values('William Shakespeare');
+
+insert into uf(uf_descricao, uf_sigla)values('ACRE','AC');
+insert into uf(uf_descricao, uf_sigla)values('ALAGOAS','AL');
+insert into uf(uf_descricao, uf_sigla)values('AMAPÁ','AM');
+insert into uf(uf_descricao, uf_sigla)values('BAHIA','BA');
+insert into uf(uf_descricao, uf_sigla)values('CEARÁ','CE');
+insert into uf(uf_descricao, uf_sigla)values('DISTRITO FEDERAL','DF');
+insert into uf(uf_descricao, uf_sigla)values('ESPÍRITO SANTO','ES');
+insert into uf(uf_descricao, uf_sigla)values('GOIÁS','GO');
+insert into uf(uf_descricao, uf_sigla)values('MARANHÃO','MA');
+insert into uf(uf_descricao, uf_sigla)values('MATO GROSSO','MT');
+insert into uf(uf_descricao, uf_sigla)values('MATO GROSSO DO SUL','MS');
+insert into uf(uf_descricao, uf_sigla)values('MINAS GERAOS','MG');
+insert into uf(uf_descricao, uf_sigla)values('PARÁ','PA');
+insert into uf(uf_descricao, uf_sigla)values('PARAÍBA','PB');
+insert into uf(uf_descricao, uf_sigla)values('PARANÁ','PR');
+insert into uf(uf_descricao, uf_sigla)values('PERNAMBUCO','PE');
+insert into uf(uf_descricao, uf_sigla)values('PIAUÍ','PI');
+insert into uf(uf_descricao, uf_sigla)values('RIO DE JANEIRO','RJ');
+insert into uf(uf_descricao, uf_sigla)values('RIO GRANDE DO NORTE','RN');
+insert into uf(uf_descricao, uf_sigla)values('RIO GRANDE DO SUL','RS');
+insert into uf(uf_descricao, uf_sigla)values('RONDÔNIA','RO');
+insert into uf(uf_descricao, uf_sigla)values('RORAIMA','RR');
+insert into uf(uf_descricao, uf_sigla)values('SANTA CATARINA','SC');
+insert into uf(uf_descricao, uf_sigla)values('SÃO PAULO','SP');
+insert into uf(uf_descricao, uf_sigla)values('SERGIPE','SE');
+insert into uf(uf_descricao, uf_sigla)values('TOCANTINS','TO');
+
+insert into status(status_descricao)values('Ativo');
+insert into status(status_descricao)values('Quitado');
+insert into status(status_descricao)values('Pendente');
+insert into status(status_descricao)values('Emprestado');
+insert into status(status_descricao)values('Devolvido');
+insert into status(status_descricao)values('Baixado');
+

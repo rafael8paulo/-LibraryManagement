@@ -1,0 +1,373 @@
+
+CREATE SEQUENCE public.autor_aut_cod
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.autor_aut_cod
+    OWNER TO postgres;
+
+CREATE TABLE autor (
+    aut_cod   INTEGER NOT NULL DEFAULT nextval('autor_aut_cod'::regclass),
+    aut_nome  VARCHAR(30) NOT NULL
+);
+
+ALTER TABLE public.autor
+    OWNER to postgres;
+
+ALTER TABLE autor ADD CONSTRAINT autor_pk PRIMARY KEY ( aut_cod );
+
+
+CREATE SEQUENCE public.alunfunc_mat_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.alunfunc_mat_seq
+    OWNER TO postgres;
+
+CREATE TABLE alun_func (
+	alunfunc_mat       INTEGER NOT NULL DEFAULT nextval('alunfunc_mat_seq'::regclass),
+    alunfunc_nome      VARCHAR(30) NOT NULL,
+    alunfunc_email     VARCHAR(30),
+    alunfunc_telefone  VARCHAR(15),
+    alunfunc_log       VARCHAR(30),
+    alunfunc_bairro    VARCHAR(30),
+    alunfunc_numres    INTEGER,
+    cid_ibge           INTEGER NOT NULL,
+    alunfunc_tipo      VARCHAR(20) NOT NULL
+);
+ALTER TABLE public.alun_func
+    OWNER to postgres;
+
+ALTER TABLE alun_func ADD CONSTRAINT alun_func_pk PRIMARY KEY ( alunfunc_mat );
+
+
+CREATE SEQUENCE public.baix_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.baix_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE baixas (
+    baix_cod     INTEGER NOT NULL DEFAULT nextval('baix_cod_seq'::regclass),
+    baix_motivo  VARCHAR(30) NOT NULL,
+    baix_data    DATE NOT NULL,
+    exemp_cod    INTEGER NOT NULL,
+    empdev_cod   INTEGER NOT NULL
+);
+
+ALTER TABLE baixas ADD CONSTRAINT baixas_pk PRIMARY KEY ( baix_cod );
+
+
+CREATE SEQUENCE public.cid_ibge_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.cid_ibge_seq
+    OWNER TO postgres;
+
+CREATE TABLE cidades (
+    cid_ibge       INTEGER NOT NULL DEFAULT nextval('cid_ibge_seq'::regclass),
+    cid_descricao  VARCHAR(30) NOT NULL,
+    uf_cod         INTEGER NOT NULL
+);
+
+ALTER TABLE cidades ADD CONSTRAINT cidades_pk PRIMARY KEY ( cid_ibge );
+
+
+CREATE SEQUENCE public.edit_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.edit_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE editora (
+    edit_cod   INTEGER NOT NULL DEFAULT nextval('edit_cod_seq'::regclass),
+    edit_nome  VARCHAR(30) NOT NULL
+);
+
+ALTER TABLE editora ADD CONSTRAINT editora_pk PRIMARY KEY ( edit_cod );
+
+CREATE SEQUENCE public.empdev_cod
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.empdev_cod
+    OWNER TO postgres;
+
+CREATE TABLE emp_dev (
+    empdev_cod     INTEGER NOT NULL DEFAULT nextval('empdev_cod'::regclass),
+    empdev_dtemp   DATE,
+    empdev_oper    CHAR(1) NOT NULL,
+    empdev_dtprev  DATE,
+    alunfunc_mat   INTEGER NOT NULL
+);
+
+ALTER TABLE emp_dev ADD CONSTRAINT emp_dev_pk PRIMARY KEY ( empdev_cod );
+
+CREATE SEQUENCE public.exemp_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.exemp_cod_seq
+    OWNER TO postgres;
+
+
+CREATE TABLE exemplar (
+    exemp_cod    INTEGER NOT NULL DEFAULT nextval('exemp_cod_seq'::regclass),
+    exemp_setor  VARCHAR(20),
+    status_cod   INTEGER NOT NULL,
+    liv_cod      INTEGER NOT NULL
+);
+
+ALTER TABLE exemplar ADD CONSTRAINT exemplar_pk PRIMARY KEY ( exemp_cod );
+
+
+CREATE TABLE i_empdev (
+    itens_dtdev  DATE NOT NULL,
+    empdev_cod   INTEGER NOT NULL,
+    exemp_cod    INTEGER NOT NULL
+);
+
+ALTER TABLE i_empdev ADD CONSTRAINT i_empdev_pk PRIMARY KEY ( empdev_cod,
+                                                              exemp_cod );
+															  
+
+CREATE TABLE liv_autor (
+    aut_cod  INTEGER NOT NULL,
+    liv_cod  INTEGER NOT NULL
+);
+
+ALTER TABLE liv_autor ADD CONSTRAINT liv_autor_pk PRIMARY KEY ( aut_cod,
+                                                                liv_cod );
+
+
+CREATE SEQUENCE public.liv_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.liv_cod_seq
+    OWNER TO postgres;
+	
+CREATE TABLE livros (
+    liv_cod         INTEGER NOT NULL DEFAULT nextval('liv_cod_seq'::regclass),
+    liv_nome        VARCHAR(30) NOT NULL,
+    liv_dtpublic    DATE NOT NULL,
+    liv_qtdpaginas  INTEGER NOT NULL,
+    edit_cod        INTEGER NOT NULL
+);
+
+ALTER TABLE livros ADD CONSTRAINT livros_pk PRIMARY KEY ( liv_cod );																
+
+CREATE SEQUENCE public.pend_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.pend_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE pend (
+    pend_cod      INTEGER NOT NULL DEFAULT nextval('pend_cod_seq'::regclass),
+    pend_dtinc    DATE NOT NULL,
+    pend_valor    INTEGER NOT NULL,
+    pend_quitada  CHAR(1),
+    empdev_cod    INTEGER NOT NULL
+);
+
+ALTER TABLE pend ADD CONSTRAINT pend_pk PRIMARY KEY ( pend_cod );
+
+
+CREATE SEQUENCE public.per_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.per_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE perfil_privilegio (
+    per_cod         INTEGER NOT NULL DEFAULT nextval('per_cod_seq'::regclass),
+    per_descricao   VARCHAR(30) NOT NULL,
+    per_incluir     CHAR(1),
+    per_excluir     CHAR(1),
+    per_consultar   CHAR(1),
+    per_editar      CHAR(1),
+    per_movimentar  CHAR(1)
+);
+
+ALTER TABLE perfil_privilegio ADD CONSTRAINT perfil_privilegio_pk PRIMARY KEY ( per_cod );
+
+
+CREATE SEQUENCE public.res_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.res_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE reservas (
+    res_cod       INTEGER NOT NULL DEFAULT nextval('res_cod_seq'::regclass),
+    res_data      DATE NOT NULL,
+    liv_cod       INTEGER NOT NULL,
+    alunfunc_mat  INTEGER NOT NULL,
+    status_cod    INTEGER NOT NULL
+);
+
+ALTER TABLE reservas ADD CONSTRAINT reservas_pk PRIMARY KEY ( res_cod );
+
+
+CREATE SEQUENCE public.status_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.status_seq
+    OWNER TO postgres;
+
+CREATE TABLE status (
+    status_cod        INTEGER NOT NULL DEFAULT nextval('status_seq'::regclass),
+    status_descricao  VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE status ADD CONSTRAINT status_pk PRIMARY KEY ( status_cod );
+
+CREATE SEQUENCE public.uf_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.uf_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE uf (
+    uf_cod        INTEGER NOT NULL DEFAULT nextval('uf_cod_seq'::regclass),
+    uf_sigla      VARCHAR(2) NOT NULL,
+    uf_descricao  VARCHAR(20)
+);
+
+ALTER TABLE uf ADD CONSTRAINT uf_pk PRIMARY KEY ( uf_cod );
+
+CREATE SEQUENCE public.usu_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.usu_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE usuarios (
+    usu_cod    INTEGER NOT NULL DEFAULT nextval('usu_cod_seq'::regclass),
+    usu_login  VARCHAR(20) NOT NULL,
+    usu_senha  VARCHAR(10) NOT NULL,
+    usu_data   DATE,
+    per_cod    INTEGER NOT NULL
+);
+
+ALTER TABLE usuarios ADD CONSTRAINT usuarios_pk PRIMARY KEY ( usu_cod );
+
+ALTER TABLE alun_func
+    ADD CONSTRAINT alun_func_cidades_fk FOREIGN KEY ( cid_ibge )
+        REFERENCES cidades ( cid_ibge );
+
+ALTER TABLE baixas
+    ADD CONSTRAINT baixas_emp_dev_fk FOREIGN KEY ( empdev_cod )
+        REFERENCES emp_dev ( empdev_cod );
+
+ALTER TABLE baixas
+    ADD CONSTRAINT baixas_exemplar_fk FOREIGN KEY ( exemp_cod )
+        REFERENCES exemplar ( exemp_cod );
+
+ALTER TABLE cidades
+    ADD CONSTRAINT cidades_uf_fk FOREIGN KEY ( uf_cod )
+        REFERENCES uf ( uf_cod );
+
+ALTER TABLE emp_dev
+    ADD CONSTRAINT emp_dev_alun_func_fk FOREIGN KEY ( alunfunc_mat )
+        REFERENCES alun_func ( alunfunc_mat );
+
+ALTER TABLE exemplar
+    ADD CONSTRAINT exemplar_livros_fk FOREIGN KEY ( liv_cod )
+        REFERENCES livros ( liv_cod );
+
+ALTER TABLE exemplar
+    ADD CONSTRAINT exemplar_status_fk FOREIGN KEY ( status_cod )
+        REFERENCES status ( status_cod );
+
+ALTER TABLE i_empdev
+    ADD CONSTRAINT i_empdev_emp_dev_fk FOREIGN KEY ( empdev_cod )
+        REFERENCES emp_dev ( empdev_cod );
+
+ALTER TABLE i_empdev
+    ADD CONSTRAINT i_empdev_exemplar_fk FOREIGN KEY ( exemp_cod )
+        REFERENCES exemplar ( exemp_cod );
+
+ALTER TABLE liv_autor
+    ADD CONSTRAINT liv_autor_autor_fk FOREIGN KEY ( aut_cod )
+        REFERENCES autor ( aut_cod );
+
+ALTER TABLE liv_autor
+    ADD CONSTRAINT liv_autor_livros_fk FOREIGN KEY ( liv_cod )
+        REFERENCES livros ( liv_cod );
+
+ALTER TABLE livros
+    ADD CONSTRAINT livros_editora_fk FOREIGN KEY ( edit_cod )
+        REFERENCES editora ( edit_cod );
+
+ALTER TABLE pend
+    ADD CONSTRAINT pend_emp_dev_fk FOREIGN KEY ( empdev_cod )
+        REFERENCES emp_dev ( empdev_cod );
+
+ALTER TABLE reservas
+    ADD CONSTRAINT reservas_alun_func_fk FOREIGN KEY ( alunfunc_mat )
+        REFERENCES alun_func ( alunfunc_mat );
+
+ALTER TABLE reservas
+    ADD CONSTRAINT reservas_livros_fk FOREIGN KEY ( liv_cod )
+        REFERENCES livros ( liv_cod );
+
+ALTER TABLE reservas
+    ADD CONSTRAINT reservas_status_fk FOREIGN KEY ( status_cod )
+        REFERENCES status ( status_cod );
+
+ALTER TABLE usuarios
+    ADD CONSTRAINT usuarios_perfil_privilegio_fk FOREIGN KEY ( per_cod )
+        REFERENCES perfil_privilegio ( per_cod );
