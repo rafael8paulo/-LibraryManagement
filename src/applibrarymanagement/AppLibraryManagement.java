@@ -17,7 +17,7 @@ public class AppLibraryManagement extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
-        stage.initStyle(StageStyle.UNDECORATED);//retira bordas
+        stage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
         root.setOnMousePressed(new EventHandler<MouseEvent>()
         {
@@ -38,13 +38,10 @@ public class AppLibraryManagement extends Application {
             }
         });
         
-        
-        
-        
         stage.setScene(scene);
         stage.show();
     }
-
+    
     public static void main(String[] args) {
         launch(args);
     }
