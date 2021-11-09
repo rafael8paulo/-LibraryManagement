@@ -1,0 +1,5 @@
+*.properties
+UPDATED.TXT
+build-impl.xml
+jfx-impl.xml
+private.xml

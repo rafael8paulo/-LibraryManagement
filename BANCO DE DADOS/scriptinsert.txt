@@ -1,3 +1,10 @@
+insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
+values('Administrador','S','N','S','S','S');
+insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
+values('Financeiro','S','N','S','S','S');
+insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
+values('Estoque','S','N','S','N','S');
+
 insert into usuarios(usu_login, usu_senha, usu_data, per_cod) 
 values('Vinicius','123','2021-10-29',1);
 insert into usuarios(usu_login, usu_senha, usu_data, per_cod) 
@@ -6,12 +13,6 @@ insert into usuarios(usu_login, usu_senha, usu_data, per_cod)
 values('Gustavo','123','2021-10-29',1);
 insert into usuarios(usu_login, usu_senha, usu_data, per_cod) 
 values('Emanuel','123','2021-10-29',1);
-insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
-values('Administrador','S','N','S','S','S');
-insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
-values('Financeiro','S','N','S','S','S');
-insert into perfil_privilegio(per_descricao, per_incluir,per_excluir,per_consultar,per_editar,per_movimentar) 
-values('Estoque','S','N','S','N','S');
 
 insert into autor(aut_nome) values('Clarice Lispector');
 insert into autor(aut_nome) values('William Shakespeare');
