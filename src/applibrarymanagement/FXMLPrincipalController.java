@@ -20,6 +20,8 @@ public class FXMLPrincipalController implements Initializable {
     private Button btnSair;
     @FXML
     private MenuItem mUsuario;
+    @FXML
+    private MenuItem mAutor;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -34,6 +36,18 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private void evtmUsuario(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLUsuarios.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage=new Stage();
+                    stage.setScene(scene);       
+                    //stage.setResizable(false);  
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    //stage.initStyle(StageStyle.UNDECORATED);
+                    stage.showAndWait();     
+    }
+
+    @FXML
+    private void evtmAutor(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLAutor.fxml"));
                     Scene scene = new Scene(root);
                     Stage stage=new Stage();
                     stage.setScene(scene);       

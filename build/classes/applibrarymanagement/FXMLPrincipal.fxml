@@ -21,7 +21,7 @@
           <Menu mnemonicParsing="false" text="Cadastros">
             <items>
                   <MenuItem mnemonicParsing="false" text="Exemplar" />
-                  <MenuItem mnemonicParsing="false" text="Autor" />
+                  <MenuItem fx:id="mAutor" mnemonicParsing="false" onAction="#evtmAutor" text="Autor" />
               <MenuItem mnemonicParsing="false" text="Livro" />
                   <MenuItem mnemonicParsing="false" text="Editora" />
                   <MenuItem mnemonicParsing="false" text="Aluno/Professor" />
