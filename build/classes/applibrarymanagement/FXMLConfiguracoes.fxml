@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applibrarymanagement.FXMLConfiguracoesController">
+   <children>
+      <AnchorPane layoutX="191.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #0598ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="#f5f4f4" layoutX="477.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Configurações Gerais" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="81.0" prefHeight="200.0" prefWidth="115.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Button fx:id="btnIncluir" layoutX="40.0" layoutY="9.0" mnemonicParsing="false" onAction="#evtBtnIncluir" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #0598ff;" text="Incluir" textFill="#fcf5f5" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="16.0" />
+            <Button fx:id="btnSalvar" layoutX="35.0" layoutY="46.0" mnemonicParsing="false" onAction="#evtBtnSalvar" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #0598ff;" text="Salvar" textFill="#fcf5f5" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0" />
+            <Button fx:id="btnExcluir" layoutX="30.0" layoutY="93.0" mnemonicParsing="false" onAction="#evtBtnExcluir" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #0598ff;" text="Excluir" textFill="#fcf5f5" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="84.0" />
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="3.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="23.0">
+               <image>
+                  <Image url="@../imagens/add.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="58.0">
+               <image>
+                  <Image url="@../imagens/save.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="90.0">
+               <image>
+                  <Image url="@../imagens/delete.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="186.0" layoutY="-10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Text fill="#0598ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtde. dias empréstimo" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtQtdeDiasEmp" prefHeight="27.0" prefWidth="202.0" promptText="Insira a quantidade" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+            <Text fill="#0598ff" strokeType="OUTSIDE" strokeWidth="0.0" text="\% Multa atraso" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtMultaAtraso" layoutY="61.0" prefHeight="27.0" prefWidth="202.0" promptText="Insira o % da multa" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="80.0" />
+            <Text fill="#0598ff" layoutX="202.0" layoutY="-42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\% Juro / dia" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtJuroDia" layoutX="202.0" layoutY="19.0" prefHeight="27.0" prefWidth="202.0" promptText="Insira o % da multa" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="25.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
