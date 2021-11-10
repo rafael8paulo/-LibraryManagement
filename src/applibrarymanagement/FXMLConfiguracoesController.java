@@ -1,5 +1,4 @@
 package applibrarymanagement;
-
 import dal.ConfiguracoesDal;
 import java.net.URL;
 import java.util.ResourceBundle;

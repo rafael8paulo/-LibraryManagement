@@ -68,7 +68,7 @@ public class LoginDal implements IntDal<Usuarios>
         try{                  
             ResultSet rs;
             String sql;
-            sql = "SELECT * FROM usuarios WHERE usu_login ilike '%"+filtro+"%'";
+            sql = "SELECT * FROM usuarios WHERE usu_login LIKE '%"+filtro+"%'";
             rs =connection.consultar(sql);
             while(rs.next())
             {
