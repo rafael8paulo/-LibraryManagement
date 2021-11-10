@@ -44,7 +44,7 @@ public class FXMLAutorController implements Initializable {
 
         if (!txtNomeAutor.getText().isEmpty()) {
 
-            if (!txtNomeAutor.getText().matches(".*\\d.*") && !txtNomeAutor.getText().matches("[a-zA-Z_].*")) {
+            if (txtNomeAutor.getText().matches("^[a-zA-Z]+$")) {                
                 
                 if (new AutorDal().gravar(new Autor(txtNomeAutor.getText()))) {
                     alerta.mensagem1("Salvo com Sucesso!!!");
@@ -88,5 +88,5 @@ public class FXMLAutorController implements Initializable {
         txtCodigo.setDisable(true);
         txtNomeAutor.setDisable(true);
     }
-
+    
 }

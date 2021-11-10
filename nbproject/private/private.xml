@@ -1,20 +1,11 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-    </open-files>
-</project-private>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Rafael/Faculdade/ENGENHARIA_DE_SOFTWARE/-LibraryManagement/src/applibrarymanagement/FXMLAutorController.java</file>
-            <file>file:/C:/Rafael/Faculdade/ENGENHARIA_DE_SOFTWARE/-LibraryManagement/src/applibrarymanagement/FXMLUsuariosController.java</file>
+            <file>file:/C:/Rafael/Faculdade/ENGENHARIA_DE_SOFTWARE/-LibraryManagement/src/applibrarymanagement/FXMLPrincipalController.java</file>
+            <file>file:/C:/Rafael/Faculdade/ENGENHARIA_DE_SOFTWARE/-LibraryManagement/src/dal/ConfiguracoesDal.java</file>
+            <file>file:/C:/Rafael/Faculdade/ENGENHARIA_DE_SOFTWARE/-LibraryManagement/src/applibrarymanagement/FXMLConfiguracoesController.java</file>
         </group>
     </open-files>
 </project-private>
->>>>>>> c7dd0ee0d8023cd3965eff9205324a4b33f90884
