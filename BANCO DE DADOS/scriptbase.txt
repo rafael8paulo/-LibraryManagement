@@ -1,4 +1,24 @@
 
+CREATE SEQUENCE public.conf_cod_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE public.conf_cod_seq
+    OWNER TO postgres;
+
+CREATE TABLE configuracoes (
+    conf_codigo   INTEGER NOT NULL DEFAULT nextval('conf_cod_seq'::regclass),
+    conf_multa    INTEGER,
+    conf_juros    INTEGER,
+    conf_limdias  INTEGER
+);
+
+ALTER TABLE configuracoes ADD CONSTRAINT configuracoes_pk PRIMARY KEY ( conf_codigo );
+
+
 CREATE SEQUENCE public.autor_aut_cod
     INCREMENT 1
     START 1

@@ -22,6 +22,8 @@ public class FXMLPrincipalController implements Initializable {
     private MenuItem mUsuario;
     @FXML
     private MenuItem mAutor;
+    @FXML
+    private MenuItem mConfiguracoes;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,6 +57,19 @@ public class FXMLPrincipalController implements Initializable {
                     stage.initModality(Modality.APPLICATION_MODAL);
                     //stage.initStyle(StageStyle.UNDECORATED);
                     stage.showAndWait();     
+    }
+
+    @FXML
+    private void evtmConfiguracoes(ActionEvent event) throws IOException {
+               Parent root = FXMLLoader.load(getClass().getResource("FXMLConfiguracoes.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage=new Stage();
+                    stage.setScene(scene);       
+                    //stage.setResizable(false);  
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    //stage.initStyle(StageStyle.UNDECORATED);
+                    stage.showAndWait();  
+        
     }
     
 }
