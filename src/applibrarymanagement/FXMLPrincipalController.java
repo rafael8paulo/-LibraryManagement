@@ -25,8 +25,13 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private MenuItem mConfiguracoes;
     @FXML
+<<<<<<< HEAD
     private MenuItem mPendencia;
         
+=======
+    private MenuItem mQuitarPend;
+    
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
@@ -75,6 +80,7 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
     private void evtmPendencia(ActionEvent event) throws IOException {
                 Parent root = FXMLLoader.load(getClass().getResource("FXMLQuitar.fxml"));
                     Scene scene = new Scene(root);
@@ -88,3 +94,16 @@ public class FXMLPrincipalController implements Initializable {
     }
     
 }
+=======
+    private void evtmQuitarPend(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLQuitarPendencias.fxml"));
+                Scene scene = new Scene(root);
+                    Stage stage=new Stage();
+                    stage.setScene(scene);       
+                    //stage.setResizable(false);  
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    //stage.initStyle(StageStyle.UNDECORATED);
+                    stage.showAndWait(); 
+    }
+}
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669

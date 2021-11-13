@@ -1,5 +1,6 @@
 package dal;
 import java.sql.ResultSet;
+<<<<<<< HEAD
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,21 @@ import util.Conexao;
 public class ConfiguracoesDal{
 
     public boolean gravar(Configuracoes conf, Conexao connection) {
+=======
+import java.util.ArrayList;
+import java.util.List;
+import model.*;
+import model.Privilegios;
+import model.Usuarios;
+import util.Conexao;
+
+public class ConfiguracoesDal implements IntDal<Configuracoes>{
+    
+     Conexao connection = new Conexao();
+    
+    @Override
+    public boolean gravar(Configuracoes conf) {
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
         String sql;
         String url="jdbc:postgresql://localhost/";
         try{
@@ -20,7 +36,11 @@ public class ConfiguracoesDal{
             sql=sql.replace("#3",""+conf.getConf_limDia());
             connection.manipular(sql); 
             conf.conf_cod = connection.getMaxPK("configuracoes","conf_codigo");
+<<<<<<< HEAD
             return true;         
+=======
+            return true;
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
         }
         catch(Exception e)
         {
@@ -29,6 +49,7 @@ public class ConfiguracoesDal{
         }
     }
 
+<<<<<<< HEAD
     public boolean apagar(Configuracoes conf, Conexao connection) {      
         String sql;
         String url="jdbc:postgresql://localhost/";
@@ -71,4 +92,44 @@ public class ConfiguracoesDal{
         return null;        
     }
   
+=======
+    @Override
+    public boolean alterar(Configuracoes conf) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+ 
+    @Override
+    public boolean apagar(Configuracoes conf) {
+        
+        String sql;
+        String url="jdbc:postgresql://localhost/";
+        try{
+            connection.conectar(url,"librarymanagement","postgres","postgres123");
+            sql= "DELETE FROM configuracoes";                       
+            return connection.manipular(sql);  
+        }
+        catch(Exception e)
+        {
+            System.out.println("Erro ao conectar com o banco de dados");
+        }            
+        return false;
+    }
+
+    @Override
+    public Configuracoes get(int id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+     public List get(String filtro) {
+         
+        return null;
+        
+    }
+    
+    
+    
+    
+    
+    
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
 }

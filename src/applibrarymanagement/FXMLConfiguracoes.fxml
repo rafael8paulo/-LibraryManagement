@@ -8,7 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applibrarymanagement.FXMLConfiguracoesController">
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applibrarymanagement.FXMLConfiguracoesController">
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
    <children>
       <AnchorPane layoutX="191.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #0598ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -43,17 +47,28 @@
       </AnchorPane>
       <AnchorPane layoutX="186.0" layoutY="-10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
+<<<<<<< HEAD
             <Text fill="#0598ff" layoutX="220.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtde. dias empréstimo" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="65.0">
+=======
+            <Text fill="#0598ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtde. dias empréstimo" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
                <font>
                   <Font size="10.0" />
                </font>
             </Text>
+<<<<<<< HEAD
+=======
+            <TextField fx:id="txtQtdeDiasEmp" prefHeight="27.0" prefWidth="202.0" promptText="Insira a quantidade" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
             <Text fill="#0598ff" strokeType="OUTSIDE" strokeWidth="0.0" text="\% Multa atraso" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Text>
+<<<<<<< HEAD
             <TextField fx:id="txtCodigo" layoutX="-55.0" layoutY="21.0" prefHeight="27.0" prefWidth="202.0" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
+=======
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
             <TextField fx:id="txtMultaAtraso" layoutY="61.0" prefHeight="27.0" prefWidth="202.0" promptText="Insira o % da multa" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="80.0" />
             <Text fill="#0598ff" layoutX="202.0" layoutY="-42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\% Juro / dia" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -61,6 +76,7 @@
                </font>
             </Text>
             <TextField fx:id="txtJuroDia" layoutX="202.0" layoutY="19.0" prefHeight="27.0" prefWidth="202.0" promptText="Insira o % da multa" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="25.0" />
+<<<<<<< HEAD
             <Text fill="#0598ff" layoutX="-55.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font size="10.0" />
@@ -72,6 +88,8 @@
                   <Image url="@../imagens/tools.png" />
                </image>
             </ImageView>
+=======
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
          </children>
       </AnchorPane>
    </children>

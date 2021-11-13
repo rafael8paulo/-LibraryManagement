@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applibrarymanagement.FXMLPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applibrarymanagement.FXMLPrincipalController">
    <children>
       <MenuBar layoutX="6.0" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -31,7 +31,11 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Empréstimos" />
                   <MenuItem mnemonicParsing="false" text="Devoluções" />
+<<<<<<< HEAD
                   <MenuItem fx:id="mPendencia" mnemonicParsing="false" onAction="#evtmPendencia" text="Baixar Pendência" />
+=======
+                  <MenuItem fx:id="mQuitarPend" mnemonicParsing="false" onAction="#evtmQuitarPend" text="Baixar Pendência" />
+>>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Ajuda">
