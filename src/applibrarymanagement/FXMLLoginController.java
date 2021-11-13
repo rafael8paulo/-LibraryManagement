@@ -1,9 +1,6 @@
 package applibrarymanagement;
-import dal.LoginDal;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +13,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.Usuarios;
+import model.Login;
 import util.Alertas;
+import util.Conexao;
 
 public class FXMLLoginController implements Initializable {
     @FXML
@@ -32,25 +30,22 @@ public class FXMLLoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         limparCampos();
-        
+         //instanciar model privilegios pra retornar os privilegios
+         //gravar os privilegios em uma classe statica
+         //gravar o usuario logado em classe estatica     
     }    
     @FXML
     private void evtBtnEntrar(ActionEvent event) throws IOException {
-        List<Usuarios>lista = new ArrayList();
+        Conexao connection = new Conexao();
         Alertas a = new Alertas();
-        Usuarios u = new Usuarios();
-        LoginDal ldal = new LoginDal();
-        u.setUsu_login(txtLogin.getText());
-        u.setUsu_senha(txtSenha.getText());
-        if(u.validarUsuario(u))
-        {
-            lista = ldal.get(u.getUsu_login());
-            if(lista.size()<=0)
-                a.mensagem1("Credenciais não encontradas");
-            else      
-            if(lista.get(0).getUsu_login().equalsIgnoreCase(txtLogin.getText()))
+        Login login = new Login();
+        login.setLogin(txtLogin.getText());
+        login.setSenha(txtSenha.getText());
+        if(login.validaLogin())
+        {  
+            if(login.getLogin().equalsIgnoreCase(txtLogin.getText()))
             {
-                if(lista.get(0).getUsu_senha().equalsIgnoreCase(txtSenha.getText()))
+                if(login.getSenha().equalsIgnoreCase(txtSenha.getText()))
                 {
                     btnSair.getScene().getWindow().hide();
                     Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));

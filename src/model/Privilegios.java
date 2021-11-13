@@ -1,4 +1,10 @@
 package model;
+
+import dal.PrivilegiosDal;
+import java.util.ArrayList;
+import java.util.List;
+import util.Conexao;
+
 public class Privilegios 
 {
     public int per_cod;
@@ -81,10 +87,26 @@ public class Privilegios
     public void setPer_movimentar(boolean per_movimentar) {
         this.per_movimentar = per_movimentar;
     }
-
+    
     @Override
     public String toString() {
         return per_descricao;
     }
     
+    public List<Privilegios> carregarPrivilegios(Conexao connection)
+    {
+        PrivilegiosDal pDal = new PrivilegiosDal();
+        List<Privilegios> listaCategoria = new ArrayList();
+        listaCategoria = pDal.retornarLista(this,connection,"");
+        return listaCategoria;
+    }
+    
+    public void carregaPrivilegio(Conexao connection, String filtro)
+    {
+        PrivilegiosDal pDal = new PrivilegiosDal();
+        List<Privilegios> listaCategoria = new ArrayList();
+        listaCategoria = pDal.retornaPrivilegio(this,connection,filtro);   
+        setPer_cod(listaCategoria.get(0).getPer_cod());
+        setPer_descricao(listaCategoria.get(0).getPer_descricao());
+    }
 }
