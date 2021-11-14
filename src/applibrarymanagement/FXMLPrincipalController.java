@@ -75,7 +75,6 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     @FXML
-<<<<<<< HEAD
     private void evtmPendencia(ActionEvent event) throws IOException {
                 Parent root = FXMLLoader.load(getClass().getResource("FXMLQuitar.fxml"));
                     Scene scene = new Scene(root);
@@ -87,9 +86,8 @@ public class FXMLPrincipalController implements Initializable {
                     stage.showAndWait();  
         
     }
-    
-}
-=======
+
+    @FXML   
     private void evtmQuitarPend(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLQuitarPendencias.fxml"));
                 Scene scene = new Scene(root);
@@ -101,4 +99,5 @@ public class FXMLPrincipalController implements Initializable {
                     stage.showAndWait(); 
     }
 }
->>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
+
+
