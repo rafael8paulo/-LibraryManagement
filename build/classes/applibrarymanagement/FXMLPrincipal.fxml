@@ -31,11 +31,7 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Empréstimos" />
                   <MenuItem mnemonicParsing="false" text="Devoluções" />
-<<<<<<< HEAD
                   <MenuItem fx:id="mPendencia" mnemonicParsing="false" onAction="#evtmPendencia" text="Baixar Pendência" />
-=======
-                  <MenuItem fx:id="mQuitarPend" mnemonicParsing="false" onAction="#evtmQuitarPend" text="Baixar Pendência" />
->>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Ajuda">

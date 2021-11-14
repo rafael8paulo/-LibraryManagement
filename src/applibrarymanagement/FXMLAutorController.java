@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Autor;
+import model.Privilegios;
 import util.Alertas;
+import util.Conexao;
 
 public class FXMLAutorController implements Initializable {
 
@@ -27,7 +29,10 @@ public class FXMLAutorController implements Initializable {
     private TextField txtNomeAutor;
 
     Alertas alerta = new Alertas();
-
+    
+    Conexao connection = new Conexao();
+    Privilegios p = new Privilegios();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         estadoIncial();
@@ -45,10 +50,12 @@ public class FXMLAutorController implements Initializable {
         if (!txtNomeAutor.getText().isEmpty()) {
 
             if (txtNomeAutor.getText().matches("^[a-zA-Z]+$")) {                
-                
-                if (new AutorDal().gravar(new Autor(txtNomeAutor.getText()))) {
+                Autor a = new Autor(txtNomeAutor.getText());
+                if (a.gravar(connection, p)) {
+                                                            
                     alerta.mensagem1("Salvo com Sucesso!!!");
                     btnExcluir.setDisable(false);
+                    
                 } else {
                     alerta.mensagem1("Erro ao gravar!!!");
                 }

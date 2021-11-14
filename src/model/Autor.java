@@ -1,5 +1,9 @@
 package model;
 
+import dal.AutorDal;
+import java.util.List;
+import util.Conexao;
+
 public class Autor {
     
     private int aut_cod;
@@ -34,6 +38,24 @@ public class Autor {
     }
     
     
+    public boolean gravar(Conexao connection, Privilegios  privilegios){              
+        return new AutorDal().gravar(this, privilegios, connection);        
+    }
     
-            
+    public boolean alterar (Conexao connection, Privilegios  privilegios){
+        return new AutorDal().alterar(this, privilegios, connection);
+    }
+    
+    public boolean apagar (Conexao connection, Privilegios  privilegios){
+        return new AutorDal().apagar(this, privilegios, connection);
+    }
+    
+    public Autor get (Conexao connection, Privilegios  privilegios, int id){
+        return new AutorDal().get(id, privilegios, connection);
+    }
+    
+    public List get (Conexao connection, Privilegios  privilegios, String filtro){
+        return new AutorDal().get(filtro, privilegios, connection);
+    }
+    
 }

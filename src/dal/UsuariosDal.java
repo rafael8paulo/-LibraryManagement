@@ -14,6 +14,7 @@ public class UsuariosDal{
         String url = "jdbc:postgresql://localhost/";
         try {
             connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            
             sql = "INSERT INTO usuarios(usu_login,usu_senha,usu_data, per_cod)";
             sql = sql + "VALUES ('#1', '#2','2021-11-7',#4)";
             sql = sql.replace("#1", usuarios.getUsu_login());

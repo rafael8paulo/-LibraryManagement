@@ -7,63 +7,8 @@ import model.Autor;
 import model.Privilegios;
 import util.Conexao;
 
-public class AutorDal {
-
-    
-    public boolean gravar(Autor entidade, Privilegios privilegios, Conexao connection) {
-
-        String sql;
-
-        try {
-
-            sql = "INSERT INTO autor (aut_nome)";
-            sql = sql + "VALUES ('#1')";
-            sql = sql.replace("#1", entidade.getAut_nome());
-
-            connection.manipular(sql);
-
-            return true;
-        } catch (Exception e) {
-            System.out.println("Erro ao conectar com o banco de dados");
-            return false;
-        }
-    }
-    
-    public boolean alterar(Autor entidade, Privilegios privilegios, Conexao connection) {
-        String sql;
-
-        try {
-
-            sql = "UPDATE autor SET aut_nome = '#1' WHERE aut_cod = " + entidade.getAut_cod();
-            sql = sql.replace("#1", entidade.getAut_nome());
-
-            connection.manipular(sql);
-
-            return true;
-        } catch (Exception e) {
-            System.out.println("Erro ao conectar com o banco de dados");
-            return false;
-        }
-    }
-    
-    public boolean apagar(Autor entidade, Privilegios privilegios, Conexao connection) {
-
-        String sql;
-
-        try {
-
-            sql = "DELETE FROM autor WHERE aut_cod = " + entidade.getAut_cod();
-
-            connection.manipular(sql);
-
-            return true;
-        } catch (Exception e) {
-            System.out.println("Erro ao conectar com o banco de dados");
-            return false;
-        }
-
-    }
-   
+public class EmpreDevoDal {
+          
     public Autor get(int id, Privilegios privilegios, Conexao connection) {
 
         Autor aut = null;
@@ -110,5 +55,4 @@ public class AutorDal {
         }
         return lista;
     }
-
 }

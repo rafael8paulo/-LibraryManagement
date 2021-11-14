@@ -60,11 +60,15 @@ public class FXMLUsuariosController implements Initializable {
 
     @FXML
     private void evtBtnSalvar(ActionEvent event) {
+        
         Usuarios u = new Usuarios();
+
         u.setUsu_login(txtUsuario.getText());
         u.setUsu_senha(txtSenha.getText());
+
         Privilegios privilegios = new Privilegios();
         Conexao connection = new Conexao();
+
         if (!txtUsuario.getText().equalsIgnoreCase("") || !txtSenha.getText().equalsIgnoreCase("")) {
 
             if (u.gravar(connection,privilegios, cboPrivilegios.getSelectionModel().getSelectedItem().toString())) 
