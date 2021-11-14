@@ -25,13 +25,8 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private MenuItem mConfiguracoes;
     @FXML
-<<<<<<< HEAD
     private MenuItem mPendencia;
         
-=======
-    private MenuItem mQuitarPend;
-    
->>>>>>> b339f3d272e1cfb3ec5f82f1d89435cbd6209669
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
