@@ -68,9 +68,7 @@ public class Pendencia {
     public String toString() {
         return "Pendencia{" + "pend_cod=" + pend_cod + ", pend_dtpgto=" + pend_dtpgto + ", quitada=" + quitada + ", valor=" + valor + ", alunfunc=" + alunfunc + '}';
     }
-    
-
-    
+       
     public List<Pendencia>carregar(Conexao connection, int filtro, String filtro2, Alunfunc alunfunc)
     {
         List<Pendencia> listaPend = new ArrayList();

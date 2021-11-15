@@ -7,6 +7,7 @@ import model.Alunfunc;
 import util.Conexao;
 
 public class AlunfuncDal {
+    
     public List pesquisarAlunfunc (Alunfunc alunfunc, Conexao connection, String filtro){
         ArrayList<Alunfunc> lista = new ArrayList();
         String url = "jdbc:postgresql://localhost/";

@@ -30,7 +30,7 @@
           <Menu mnemonicParsing="false" text="Movimentações">
             <items>
               <MenuItem mnemonicParsing="false" text="Empréstimos" />
-                  <MenuItem mnemonicParsing="false" text="Devoluções" />
+                  <MenuItem fx:id="mDevolucao" mnemonicParsing="false" onAction="#evtDevolucao" text="Devoluções" />
                   <MenuItem fx:id="mPendencia" mnemonicParsing="false" onAction="#evtmPendencia" text="Baixar Pendência" />
             </items>
           </Menu>

@@ -16,9 +16,13 @@ public class Livro {
         this.liv_qtdpaginas = liv_qtdpaginas;
     }
 
+    public Livro(String liv_nome) {
+        this.liv_nome = liv_nome;
+    }
+    
     public Livro() {
     }
-
+        
     public Livro(String liv_nome, LocalDate liv_dtpublic, int liv_qtdpaginas) {
         this.liv_nome = liv_nome;
         this.liv_dtpublic = liv_dtpublic;

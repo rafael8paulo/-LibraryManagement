@@ -6,9 +6,10 @@ import java.util.List;
 import util.Conexao;
 
 public class Alunfunc {
+    
     private String alf_nome;
     private int alf_codigo;
-
+  
     public Alunfunc() {
     }
 
@@ -17,6 +18,10 @@ public class Alunfunc {
         this.alf_codigo = alf_codigo;
     }
 
+    public Alunfunc(String alf_nome) {
+        this.alf_nome = alf_nome;
+    }
+           
     public String getAlf_nome() {
         return alf_nome;
     }
@@ -31,9 +36,7 @@ public class Alunfunc {
 
     public void setAlf_codigo(int alf_codigo) {
         this.alf_codigo = alf_codigo;
-    }
-    
-    
+    }        
 
     @Override
     public String toString() {

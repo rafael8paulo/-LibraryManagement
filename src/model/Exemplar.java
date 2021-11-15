@@ -1,5 +1,8 @@
 package model;
 
+import dal.ExemplarDal;
+import util.Conexao;
+
 
 public class Exemplar {
     
@@ -58,4 +61,12 @@ public class Exemplar {
         this.livro = livro;
     }    
             
+    public boolean alterar(Conexao connection){
+        
+        if(new ExemplarDal().alterar(connection, this))
+            return true;
+        
+        return false;
+    }
+    
 }

@@ -51,6 +51,7 @@ public class FXMLQuitarController implements Initializable {
     private TableColumn<Pendencia, LocalDate> tbDtpgto;
 
     ObservableList<Pendencia> lista;
+
     @FXML
     private ToggleGroup togglerb;
     @FXML
@@ -88,11 +89,14 @@ public class FXMLQuitarController implements Initializable {
 
     @FXML
     private void evtBtnPesquisar(ActionEvent event) {
+
         Conexao connection = new Conexao();
         Pendencia pendencia = new Pendencia();
         Alunfunc alunfunc = new Alunfunc();
-        int filtro;
-        filtro = Integer.parseInt(txtMatricula.getText());       
+
+        int filtro;  
+        filtro = Integer.parseInt(txtMatricula.getText());  
+             
         tbCodigo.setCellValueFactory(new PropertyValueFactory<Pendencia, Integer >("pend_cod"));
         tbDtpgto.setCellValueFactory(new PropertyValueFactory<Pendencia, LocalDate>("pend_dtpgto"));
         tbValor.setCellValueFactory(new PropertyValueFactory<Pendencia, Integer>("valor"));
@@ -103,9 +107,11 @@ public class FXMLQuitarController implements Initializable {
                 return new SimpleStringProperty(alunfunc.getAlf_nome());
             }
         });
+
         String filtro2 = "";
         RadioButton radio;
         radio = (RadioButton) togglerb.getSelectedToggle();       
+
         if(radio.getText().equalsIgnoreCase("Quitadas"))
         {
            filtro2="S";
