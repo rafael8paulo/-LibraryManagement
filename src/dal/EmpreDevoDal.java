@@ -11,57 +11,9 @@ import model.Alunfunc;
 import model.Autor;
 import model.Empdev;
 import model.Livro;
-import model.Privilegios;
 import util.Conexao;
 
-public class EmpreDevoDal {
-
-    public Autor get(int id, Privilegios privilegios, Conexao connection) {
-
-        Autor aut = null;
-
-        try {
-            ResultSet rs;
-            String sql;
-            sql = "SELECT * FROM autor WHERE aut_cod = " + id;
-            rs = connection.consultar(sql);
-            if (rs.next()) {
-                aut = new Autor(
-                        rs.getInt("aut_cod"),
-                        rs.getString("aut_nome")
-                );
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro ao conectar com o banco de dados" + e);
-        }
-        return aut;
-    }
-
-    public List<Autor> get(String filtro, Conexao connection) {
-
-        ArrayList<Autor> lista = new ArrayList();
-
-        try {
-            ResultSet rs;
-            String sql;
-            sql = "SELECT * FROM autor WHERE aut_nome LIKE '%" + filtro + "%'";
-            rs = connection.consultar(sql);
-            while (rs.next()) {
-
-                lista.add(
-                        new Autor(
-                                rs.getInt("aut_cod"),
-                                rs.getString("aut_nome")
-                        )
-                );
-            }
-            return lista;
-        } catch (Exception e) {
-            System.out.println("Erro ao conectar com o banco de dados" + e);
-        }
-        return lista;
-    }
+public class EmpreDevoDal {           
 
     public ObservableList<Empdev> carregarTabelaDevo(int mat, String nome, Conexao connection, Alunfunc alunfunc, Livro livro) {
 
@@ -85,8 +37,9 @@ public class EmpreDevoDal {
             if (mat != 0) {
                 sql = sql + " AND aluf.alunfunc_mat = " + mat;
             }
-            if (!nome.isEmpty())
-                sql = sql + " AND aluf.alunfunc_nome LIKE '%" + nome+"%'";           
+            if (!nome.isEmpty()) {
+                sql = sql + " AND aluf.alunfunc_nome LIKE '%" + nome + "%'";
+            }
 
             rs = connection.consultar(sql);
             while (rs.next()) {
@@ -108,6 +61,32 @@ public class EmpreDevoDal {
             System.out.println("Erro ao conectar com o banco de dados" + e);
         }
         return lista;
+    }
+
+    public int atrasoEmDias(Conexao connection, int empdev_cod) {
+
+        int dias = 0;
+
+        try {
+            ResultSet rs;
+            String sql;
+            sql = "SELECT ( CURRENT_DATE - empdev_dtprev) AS dias FROM emp_dev WHERE empdev_cod = " + empdev_cod;
+            rs = connection.consultar(sql);
+            while (rs.next()) {
+                dias = rs.getInt("dias");
+            }
+            
+            if(dias > 0){
+                return dias;
+            }
+            
+            return 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao conectar com o banco de dados" + e);
+        }
+
+        return dias;
     }
 
 }

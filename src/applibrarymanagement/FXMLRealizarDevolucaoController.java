@@ -17,9 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import model.Alunfunc;
+import model.Configuracoes;
 import model.Empdev;
 import model.IEmpDev;
 import model.Livro;
+import model.Pendencia;
 import util.Alertas;
 import util.Conexao;
 
@@ -69,9 +71,33 @@ public class FXMLRealizarDevolucaoController implements Initializable {
         iD.setEmpdev_cod(codSelecao);
         
         if(iD.devolucao(connection, codSelecao))
-        {
-            alertas.mensagem1("Devolução realizada com sucesso!"); 
-            //fazer um select nas configuraçoes gerais
+        {             
+            
+            Empdev e = new Empdev();            
+            e.setEmpdev_cod(codSelecao);
+            
+            int diasAtraso = e.consultarDiasEmAtraso(connection);                        
+            
+            if( diasAtraso > 0 ){
+                
+                Configuracoes c = new Configuracoes();                                                
+                c.exibir(connection);       
+                
+                int valorMulta = (c.getConf_juro() * diasAtraso) / 100;   
+                
+                double valor = (c.getConf_juro() * diasAtraso) / 100;
+                valorMulta = valorMulta * diasAtraso;                
+                
+                Pendencia p = new Pendencia();
+                p.setValor(valorMulta);
+                p.setEmpdev_cod(codSelecao);
+                p.inserirPerdencia(connection);
+                
+                alertas.mensagem1("Devolução realizada com sucesso! "
+                        + "\n Exemplar em atraso !! \n"
+                        + " Nova pendencia inserida no sistema, valor: R$ "+valor);
+            }else
+                alertas.mensagem1("Devolução realizada com sucesso!");
         }
                    
         else

@@ -14,7 +14,7 @@ public class Empdev {
     private LocalDate dtprev;
     private Alunfunc alunfunc;
     private Livro livro;
-
+    
     public Empdev(int empdev_cod, LocalDate empdev_dttemp, int empdev_oper, LocalDate dtprev, Alunfunc alunfunc) {
         this.empdev_cod = empdev_cod;
         this.empdev_dttemp = empdev_dttemp;
@@ -75,11 +75,21 @@ public class Empdev {
         this.alunfunc = alunfunc;
     }
 
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Empdev{" + "empdev_cod=" + empdev_cod + ", empdev_dttemp=" + empdev_dttemp + ", empdev_oper=" + empdev_oper + ", dtprev=" + dtprev + ", alunfunc=" + alunfunc + ", livro=" + livro + '}';
     }
-    
+        
     public List<Empdev>carregar(Conexao connnection, int matricula, String nome, Alunfunc alunfunc, Livro livro)
     {
         List<Empdev> listaPend = new ArrayList();
@@ -87,4 +97,8 @@ public class Empdev {
         listaPend = Dal.carregarTabelaDevo(matricula, nome, connnection, alunfunc, livro);
         return listaPend;
     }         
+    
+    public int consultarDiasEmAtraso(Conexao connection){        
+        return new EmpreDevoDal().atrasoEmDias(connection, this.getEmpdev_cod());        
+    }
 }

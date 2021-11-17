@@ -6,15 +6,24 @@ import java.util.List;
 import util.Conexao;
 
 public class Pendencia {
+    
     private int pend_cod;
     private LocalDate pend_dtpgto;
     private String quitada;
     private int valor;
     private Alunfunc alunfunc;
-
+    private int empdev_cod;
+    
     public Pendencia() {
     }
 
+    public Pendencia(int valor, Alunfunc alunfunc, int empdev_cod) {
+        this.valor = valor;
+        this.alunfunc = alunfunc;
+        this.empdev_cod = empdev_cod;
+    }
+
+    
     public Pendencia(int pend_cod, LocalDate pend_dtpgto, String quitada, int valor, Alunfunc alunfunc) {
         this.pend_cod = pend_cod;
         this.pend_dtpgto = pend_dtpgto;
@@ -64,13 +73,19 @@ public class Pendencia {
         this.alunfunc = alunfunc;
     }
 
+    public int getEmpdev_cod() {
+        return empdev_cod;
+    }
+
+    public void setEmpdev_cod(int empdev_cod) {
+        this.empdev_cod = empdev_cod;
+    }
+    
     @Override
     public String toString() {
         return "Pendencia{" + "pend_cod=" + pend_cod + ", pend_dtpgto=" + pend_dtpgto + ", quitada=" + quitada + ", valor=" + valor + ", alunfunc=" + alunfunc + '}';
     }
-    
-
-    
+       
     public List<Pendencia>carregar(Conexao connection, int filtro, String filtro2, Alunfunc alunfunc)
     {
         List<Pendencia> listaPend = new ArrayList();
@@ -88,5 +103,11 @@ public class Pendencia {
         return true;
     }
     
+    
+    public boolean inserirPerdencia(Conexao connection){
+        
+        new PendenciaDal().incluirPendencia(connection, this);
+        return true;
+    }
     
 }
