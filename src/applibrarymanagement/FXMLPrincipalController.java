@@ -28,6 +28,10 @@ public class FXMLPrincipalController implements Initializable {
     private MenuItem mConfiguracoes;
     @FXML
     private MenuItem mPendencia;
+    @FXML
+    private MenuItem mAlunoProf;
+    @FXML
+    private MenuItem mDevolucao;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -106,6 +110,18 @@ public class FXMLPrincipalController implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.showAndWait();
 
+    }
+
+    @FXML
+    private void evtmAlunoProf(ActionEvent event) throws IOException {
+                Parent root = FXMLLoader.load(getClass().getResource("FXMLAlunfunc.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage=new Stage();
+                    stage.setScene(scene);       
+                    //stage.setResizable(false);  
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.showAndWait();
     }
 
     
