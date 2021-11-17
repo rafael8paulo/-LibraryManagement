@@ -4,13 +4,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Autor;
+import model.Privilegios;
 import util.Conexao;
 
-public class AutorDal{
+public class AutorDal {
 
-    Conexao connection = new Conexao();
-
-    public boolean gravar(Autor entidade) {
+    
+    public boolean gravar(Autor entidade, Privilegios privilegios, Conexao connection) {
 
         String sql;
 
@@ -28,8 +28,8 @@ public class AutorDal{
             return false;
         }
     }
-
-    public boolean alterar(Autor entidade) {
+    
+    public boolean alterar(Autor entidade, Privilegios privilegios, Conexao connection) {
         String sql;
 
         try {
@@ -45,8 +45,8 @@ public class AutorDal{
             return false;
         }
     }
-
-    public boolean apagar(Autor entidade) {
+    
+    public boolean apagar(Autor entidade, Privilegios privilegios, Conexao connection) {
 
         String sql;
 
@@ -63,8 +63,8 @@ public class AutorDal{
         }
 
     }
-
-    public Autor get(int id) {
+   
+    public Autor get(int id, Privilegios privilegios, Conexao connection) {
 
         Autor aut = null;
 
@@ -85,8 +85,8 @@ public class AutorDal{
         }
         return aut;
     }
-
-    public List<Autor> get(String filtro) {
+    
+    public List<Autor> get(String filtro, Privilegios privilegios, Conexao connection) {
         
         ArrayList<Autor> lista = new ArrayList();
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applibrarymanagement.FXMLRealizarDevolucaoController">
+   <children>
+      <AnchorPane layoutX="171.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #0598ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="WHITE" layoutX="121.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Realizar Devolução" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tbTabela" layoutX="197.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
+        <columns>
+          <TableColumn fx:id="tbCodigo" prefWidth="100.0" text="Emprestimo" />
+          <TableColumn fx:id="tbNome" minWidth="0.0" prefWidth="300.0" text="Titulo do livro" />
+            <TableColumn fx:id="tbDtPrevis" prefWidth="230.0" text="Data Prevst." />
+            <TableColumn fx:id="tbAluFun" prefWidth="250.0" text="Aluno/Funcionario" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="76.0" layoutY="386.0" prefHeight="70.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnDevolucao" layoutX="341.0" layoutY="23.0" mnemonicParsing="false" onAction="#evtBtnDevolucao" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #0598ff;" text="Realizar Devolução" textFill="#fffefe" />
+            <Button fx:id="btnSair" layoutX="447.0" layoutY="23.0" mnemonicParsing="false" onAction="#evtBtnSair" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: red;" text="Fechar" textFill="#fffefe" AnchorPane.leftAnchor="470.0" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="txtMatricula" layoutX="14.0" layoutY="43.0" onAction="#evtMatricula" prefHeight="27.0" prefWidth="122.0" promptText="Matrícula" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNome" layoutX="147.0" layoutY="43.0" prefHeight="27.0" prefWidth="122.0" promptText="Nome" style="-fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btnPesquisar" layoutX="19.0" layoutY="103.0" mnemonicParsing="false" onAction="#evtBtnPesquisar" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #0598ff;" text="Pesquisar" textFill="#fffefe" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
+      <Text fill="#0598ff" layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matrícula" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Text>
+      <Text fill="#0598ff" layoutX="140.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Aluno/Funcionário" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -94,5 +94,19 @@ public class FXMLPrincipalController implements Initializable {
         
         
     }
+
+    @FXML
+    private void evtDevolucao(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLRealizarDevolucao.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();
+
+    }
+
     
 }
