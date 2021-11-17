@@ -42,7 +42,7 @@ public class FXMLRealizarDevolucaoController implements Initializable {
     @FXML
     private Button btnSair;
     @FXML
-    private TextField txtMatricula;    
+    private TextField txtMatricula;
 
     ObservableList<Empdev> lista;
 
@@ -54,54 +54,55 @@ public class FXMLRealizarDevolucaoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        Platform.runLater(()->{txtMatricula.requestFocus();});
+
+        Platform.runLater(() -> {
+            txtMatricula.requestFocus();
+        });
         carregarTabela(0, "");
 
     }
 
     @FXML
     private void evtBtnDevolucao(ActionEvent event) {
-        
+
         Alertas alertas = new Alertas();
-        
+
         int codSelecao = tbTabela.getSelectionModel().getSelectedItem().getEmpdev_cod();
-               
+
         IEmpDev iD = new IEmpDev(LocalDate.now());
         iD.setEmpdev_cod(codSelecao);
-        
-        if(iD.devolucao(connection, codSelecao))
-        {             
+
+        Empdev e = new Empdev();
+        e.setEmpdev_cod(codSelecao);
+
+        int diasAtraso = e.consultarDiasEmAtraso(connection);
+
+        if (iD.devolucao(connection, codSelecao)) {
             
-            Empdev e = new Empdev();            
-            e.setEmpdev_cod(codSelecao);
-            
-            int diasAtraso = e.consultarDiasEmAtraso(connection);                        
-            
-            if( diasAtraso > 0 ){
-                
-                Configuracoes c = new Configuracoes();                                                
-                c.exibir(connection);       
-                
-                int valorMulta = (c.getConf_juro() * diasAtraso) / 100;   
-                
-                double valor = (c.getConf_juro() * diasAtraso) / 100;
-                valorMulta = valorMulta * diasAtraso;                
-                
+            alertas.mensagem1("Devolução realizada com sucesso!");
+
+            if (diasAtraso > 0) {
+
+                Configuracoes c = new Configuracoes();
+                c.exibir(connection);
+
+                double valor = (double) (c.getConf_juro() * diasAtraso) / 100;
+                valor = valor * diasAtraso;
+
                 Pendencia p = new Pendencia();
-                p.setValor(valorMulta);
+                p.setValor(valor);
                 p.setEmpdev_cod(codSelecao);
                 p.inserirPerdencia(connection);
-                
-                alertas.mensagem1("Devolução realizada com sucesso! "
-                        + "\n Exemplar em atraso !! \n"
-                        + " Nova pendencia inserida no sistema, valor: R$ "+valor);
-            }else
-                alertas.mensagem1("Devolução realizada com sucesso!");
-        }
-                   
-        else
+
+                alertas.mensagem1(
+                        "Exemplar em atraso !! \n"
+                        + "Nova pendencia inserida no sistema, no valor de R$ "
+                        + valor);
+            }
+
+        } else {
             alertas.mensagem1("Erro ao realizar devolução !");
+        }
     }
 
     @FXML
@@ -113,26 +114,26 @@ public class FXMLRealizarDevolucaoController implements Initializable {
     private void evtMatricula(ActionEvent event) {
     }
 
-
     @FXML
     private void evtBtnPesquisar(ActionEvent event) {
-         
-        int mat = 0;  
-        
-        if(!txtMatricula.getText().isEmpty())
+
+        int mat = 0;
+
+        if (!txtMatricula.getText().isEmpty()) {
             mat = Integer.parseInt(txtMatricula.getText());
-        
+        }
+
         String nome = txtNome.getText();
         carregarTabela(mat, nome);
-               
+
     }
 
     private void carregarTabela(int mat, String nome) {
-        
+
         Empdev empdev = new Empdev();
         Alunfunc alunfunc = new Alunfunc();
         Livro livro = new Livro();
-        
+
         tbCodigo.setCellValueFactory(new PropertyValueFactory<Empdev, Integer>("empdev_cod"));
 
         tbNome.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Empdev, String>, ObservableValue<String>>() {
@@ -152,13 +153,12 @@ public class FXMLRealizarDevolucaoController implements Initializable {
                 );
             }
         });
-        
+
         lista = (ObservableList<Empdev>) empdev.carregar(connection, mat, nome, alunfunc, livro);
         tbTabela.setItems(lista);
-        
-        
+
         System.out.println(lista.toString());
-        
+
     }
 
 }

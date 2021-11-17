@@ -10,7 +10,7 @@ public class Pendencia {
     private int pend_cod;
     private LocalDate pend_dtpgto;
     private String quitada;
-    private int valor;
+    private double valor;
     private Alunfunc alunfunc;
     private int empdev_cod;
     
@@ -31,11 +31,7 @@ public class Pendencia {
         this.valor=valor;
         this.alunfunc = alunfunc;
     }
-
-    public int getValor() {
-        return valor;
-    }
-
+    
     public void setValor(int valor) {
         this.valor = valor;
     }
@@ -80,6 +76,16 @@ public class Pendencia {
     public void setEmpdev_cod(int empdev_cod) {
         this.empdev_cod = empdev_cod;
     }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+    
+    
     
     @Override
     public String toString() {
@@ -107,6 +113,7 @@ public class Pendencia {
     public boolean inserirPerdencia(Conexao connection){
         
         new PendenciaDal().incluirPendencia(connection, this);
+        
         return true;
     }
     

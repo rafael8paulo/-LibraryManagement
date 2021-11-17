@@ -39,7 +39,7 @@ public class PendenciaDal {
         }
     }
 
-    public boolean alterar(Conexao connection, int filtro, Pendencia pendencia) {
+    public boolean alterar(Conexao connection, double filtro, Pendencia pendencia) {
         String sql;
         sql = "UPDATE pend SET pend_dtpgto='#1', pend_quitada = 'S' "
                 + "WHERE pend_cod=" + pendencia.getPend_cod();
@@ -50,10 +50,13 @@ public class PendenciaDal {
     public boolean incluirPendencia(Conexao connection, Pendencia pendencia) {
         String sql;
         sql = "INSERT INTO pend(pend_dtinc, pend_valor, pend_quitada, empdev_cod)\n"
-                + "	VALUES (CURRENT_DATE, '#1', 'N', #2);";
+                + "	VALUES (CURRENT_DATE, #1, 'N', #2);";
 
         sql = sql.replace("#1", String.valueOf(pendencia.getValor()));
         sql = sql.replace("#2", String.valueOf(pendencia.getEmpdev_cod()));
+        
+        System.out.println(sql);
+        
         return connection.manipular(sql);
     }
 
