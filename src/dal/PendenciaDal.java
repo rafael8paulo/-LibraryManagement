@@ -22,7 +22,7 @@ public class PendenciaDal {
                     + " a.alunfunc_mat, a.alunfunc_nome "
                     + "from pend as p inner join alun_func"
                     + " as a on a.alunfunc_mat = p.alunfunc_mat "
-                    + "WHERE p.alunfunc_mat = " + filtro + "::integer and pend_quitada = '"+filtro2+"'";
+                    + "WHERE p.alunfunc_mat = " + filtro + "::integer and pend_quitada = '" + filtro2 + "'";
             rs = connection.consultar(sql);
 
             while (rs.next()) {
@@ -39,11 +39,22 @@ public class PendenciaDal {
         }
     }
 
-    public boolean alterar(Conexao connection, int filtro, Pendencia pendencia ) {
+    public boolean alterar(Conexao connection, int filtro, Pendencia pendencia) {
         String sql;
         sql = "UPDATE pend SET pend_dtpgto='#1', pend_quitada = 'S' "
                 + "WHERE pend_cod=" + pendencia.getPend_cod();
-        sql = sql.replace("#1",pendencia.getPend_dtpgto().toString());
+        sql = sql.replace("#1", pendencia.getPend_dtpgto().toString());
         return connection.manipular(sql);
     }
+
+    public boolean incluirPendencia(Conexao connection, Pendencia pendencia) {
+        String sql;
+        sql = "INSERT INTO pend(pend_dtinc, pend_valor, pend_quitada, empdev_cod)\n"
+                + "	VALUES (CURRENT_DATE, '#1', 'N', #2);";
+
+        sql = sql.replace("#1", String.valueOf(pendencia.getValor()));
+        sql = sql.replace("#2", String.valueOf(pendencia.getEmpdev_cod()));
+        return connection.manipular(sql);
+    }
+
 }
