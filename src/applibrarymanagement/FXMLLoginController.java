@@ -1,9 +1,7 @@
 package applibrarymanagement;
-import dal.LoginDal;
+
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,10 +14,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.Usuarios;
+import model.Login;
+import model.Privilegios;
 import util.Alertas;
+import util.Conexao;
 
 public class FXMLLoginController implements Initializable {
+
     @FXML
     private TextField txtLogin;
     @FXML
@@ -32,50 +33,54 @@ public class FXMLLoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         limparCampos();
-        
-    }    
+        //instanciar model privilegios pra retornar os privilegios
+        //gravar os privilegios em uma classe statica
+        //gravar o usuario logado em classe estatica     
+    }
+
     @FXML
     private void evtBtnEntrar(ActionEvent event) throws IOException {
-        List<Usuarios>lista = new ArrayList();
+        Conexao connection = new Conexao();
         Alertas a = new Alertas();
-        Usuarios u = new Usuarios();
-        LoginDal ldal = new LoginDal();
-        u.setUsu_login(txtLogin.getText());
-        u.setUsu_senha(txtSenha.getText());
-        if(u.validarUsuario(u))
+        Login login = new Login();
+        Privilegios privilegios = new Privilegios();
+        login.setLogin(txtLogin.getText());
+        login.setSenha(txtSenha.getText());
+        if (login.validaLogin()) 
         {
-            lista = ldal.get(u.getUsu_login());
-            if(lista.size()<=0)
-                a.mensagem1("Credenciais não encontradas");
-            else      
-            if(lista.get(0).getUsu_login().equalsIgnoreCase(txtLogin.getText()))
-            {
-                if(lista.get(0).getUsu_senha().equalsIgnoreCase(txtSenha.getText()))
-                {
-                    btnSair.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage=new Stage();
-                    stage.setScene(scene);       
-                    //stage.setResizable(false);  
-                    //stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.setMaximized(true);
-                    stage.showAndWait();       
+            if (login.logar(connection)) {                               
+                if (login.getLogin().equalsIgnoreCase(txtLogin.getText())) {
+                    if (login.getSenha().equalsIgnoreCase(txtSenha.getText())) { 
+                        //carregou os privilégios e setou no objeto
+                        privilegios.carregaPrivilegioById(connection,login.getPerfil());
+                        btnSair.getScene().getWindow().hide();
+                        Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        //stage.setResizable(false);  
+                        //stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        stage.setMaximized(true);
+                        stage.showAndWait();
+                    }
+                     else {
+                        a.mensagem1("Credenciais não encontradas");
+                    }
                 }
-                else
-                    a.mensagem1("Credenciais não encontradas");
-            } 
+            }
+        } 
+         else {
+            a.mensagem1("Dados inválidos");
         }
-        else 
-            a.mensagem1("Dados inválidos");         
     }
+
     @FXML
     private void evtBtnSair(ActionEvent event) {
         btnSair.getScene().getWindow().hide();
-    }  
-    private void limparCampos()
-    {
+    }
+
+    private void limparCampos() {
         txtLogin.setText("");
         txtSenha.setText("");
     }

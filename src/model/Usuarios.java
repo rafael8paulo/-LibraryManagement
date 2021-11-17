@@ -1,16 +1,18 @@
 package model;
-
+import dal.UsuariosDal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import util.Conexao;
+public class Usuarios {
 
-public class Usuarios 
-{
     public int usu_codigo;
     private String usu_login;
     private String usu_senha;
     private LocalDate data;
     private Privilegios privilegio;
-    
-    public Usuarios(int usu_codigo, String usu_login, String usu_senha, 
+
+    public Usuarios(int usu_codigo, String usu_login, String usu_senha,
             LocalDate data, Privilegios privilegio) {
         this.usu_codigo = usu_codigo;
         this.usu_login = usu_login;
@@ -62,27 +64,46 @@ public class Usuarios
         this.privilegio = privilegio;
     }
 
-    public boolean validarUsuario( Usuarios u)
-    {
-        boolean valida = true;
-        if(getUsu_login().equalsIgnoreCase("") || getUsu_login().length() < 3 )
-        {
-            valida = false;
-        }
-        else if(getUsu_senha().equalsIgnoreCase("") || getUsu_senha().length() < 3)
-        {
-            valida = false;
-        }
-        return valida;
+    public boolean gravar(Conexao connection, Privilegios privilegios, String filtro) {
+        UsuariosDal uDal = new UsuariosDal();
+        privilegios.carregaPrivilegio(connection, filtro);
+        return uDal.gravar(this, privilegios, connection);
     }
     
-    
+    public boolean alterar(String filtro2,Conexao connection, Privilegios privilegios, String filtro) {
+        UsuariosDal uDal = new UsuariosDal();
+        privilegios.carregaPrivilegio(connection, filtro);
+        return uDal.alterar(this, privilegios, connection,Integer.parseInt(filtro2));
+    }
+
+    public boolean excluir(Conexao connection) {
+        UsuariosDal uDal = new UsuariosDal();
+        uDal.apagar(this, connection);
+        return true;
+    }
+
+    public boolean pesquisar(Conexao connection, String auxiliar) {
+        UsuariosDal lDal = new UsuariosDal();
+        List<Usuarios> lista = new ArrayList();
+        lista = lDal.get(this, auxiliar, connection);
+
+        if (!lista.isEmpty()) {
+            lista.get(0).getUsu_codigo();
+            lista.get(0).getUsu_login();
+            lista.get(0).getUsu_senha();
+            lista.get(0).getData().toString();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
-        return "Usuarios{" + "usu_codigo=" + usu_codigo + 
-                ", usu_login=" + usu_login + 
-                ", usu_senha=" + usu_senha + 
-                ", data=" + data +'}';
-    }    
+        return "Usuarios{" + "usu_codigo=" + usu_codigo
+                + ", usu_login=" + usu_login
+                + ", usu_senha=" + usu_senha
+                + ", data=" + data + '}';
+    }
 
 }
