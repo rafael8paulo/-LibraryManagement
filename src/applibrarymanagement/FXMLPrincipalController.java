@@ -1,4 +1,5 @@
 package applibrarymanagement;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,71 +33,70 @@ public class FXMLPrincipalController implements Initializable {
     private MenuItem mAlunoProf;
     @FXML
     private MenuItem mDevolucao;
-        
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-    }    
+
+    }
 
     @FXML
     private void evtBtnSair(ActionEvent event) {
-         btnSair.getScene().getWindow().hide();      
+        btnSair.getScene().getWindow().hide();
     }
 
     @FXML
     private void evtmUsuario(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLUsuarios.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage=new Stage();
-                    stage.setScene(scene);       
-                    //stage.setResizable(false);  
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    //stage.initStyle(StageStyle.UNDECORATED);
-                    stage.showAndWait();     
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        //stage.setResizable(false);  
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();
     }
 
     @FXML
     private void evtmAutor(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLAutor.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage=new Stage();
-                    stage.setScene(scene);       
-                    //stage.setResizable(false);  
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    //stage.initStyle(StageStyle.UNDECORATED);
-                    stage.showAndWait();     
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        //stage.setResizable(false);  
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();
     }
 
     @FXML
     private void evtmConfiguracoes(ActionEvent event) throws IOException {
-               Parent root = FXMLLoader.load(getClass().getResource("FXMLConfiguracoes.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage=new Stage();
-                    stage.setScene(scene);       
-                    //stage.setResizable(false);  
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    //stage.initStyle(StageStyle.UNDECORATED);
-                    stage.showAndWait();  
-        
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLConfiguracoes.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        //stage.setResizable(false);  
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();
+
     }
 
     @FXML
     private void evtmPendencia(ActionEvent event) throws IOException {
         Alertas alerta = new Alertas();
-        if(Privilegios.per_movimentar){
-                Parent root = FXMLLoader.load(getClass().getResource("FXMLQuitar.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage=new Stage();
-                    stage.setScene(scene);       
-                    stage.setResizable(false);  
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.showAndWait();
-        }
-        else
+        if (Privilegios.per_movimentar) {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLQuitar.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.showAndWait();
+        } else {
             alerta.mensagem1("Permissão não concedida");
-        
-        
+        }
+
     }
 
     @FXML
@@ -114,15 +114,26 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void evtmAlunoProf(ActionEvent event) throws IOException {
-                Parent root = FXMLLoader.load(getClass().getResource("FXMLAlunfunc.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage=new Stage();
-                    stage.setScene(scene);       
-                    //stage.setResizable(false);  
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.showAndWait();
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLAlunfunc.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        //stage.setResizable(false);  
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();
     }
 
-    
+    @FXML
+    private void evtEmprestimo(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLRealizarEmprestimo.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        //stage.setResizable(false);  
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();
+    }
+
 }

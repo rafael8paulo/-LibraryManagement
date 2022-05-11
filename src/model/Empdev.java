@@ -3,6 +3,7 @@ package model;
 import dal.EmpreDevoDal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import util.Conexao;
 
@@ -31,6 +32,7 @@ public class Empdev {
     }
                     
     public Empdev() {
+        dtprev =  LocalDate.now().plusDays(7);        
     }
     
     
@@ -82,9 +84,7 @@ public class Empdev {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
-
-    
-    
+        
     @Override
     public String toString() {
         return "Empdev{" + "empdev_cod=" + empdev_cod + ", empdev_dttemp=" + empdev_dttemp + ", empdev_oper=" + empdev_oper + ", dtprev=" + dtprev + ", alunfunc=" + alunfunc + ", livro=" + livro + '}';
@@ -101,4 +101,13 @@ public class Empdev {
     public int consultarDiasEmAtraso(Conexao connection){        
         return new EmpreDevoDal().atrasoEmDias(connection, this.getEmpdev_cod());        
     }
+    
+    public boolean Emprestimo(Conexao connection,  int exemp_cod, Alunfunc af){                        
+        return new EmpreDevoDal().emprestimo(connection, this, af);
+    }
+    
+    public boolean consultaUltimoID(Conexao connection, Alunfunc af){
+        return new EmpreDevoDal().consultaUltimoID(connection, af, this);
+    }
+    
 }

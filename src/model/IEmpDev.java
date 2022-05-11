@@ -1,6 +1,5 @@
 package model;
 
-import dal.ExemplarDal;
 import dal.IEmpDevDal;
 import java.time.LocalDate;
 import util.Conexao;
@@ -11,6 +10,10 @@ public class IEmpDev {
     private int empdev_cod;
     private int exemp_cod;
 
+    public IEmpDev() { 
+        itens_dtdev =  LocalDate.now().plusDays(7); 
+    }
+        
     public IEmpDev(LocalDate itens_dtdev, int empdev_cod, int exemp_cod) {
         this.itens_dtdev = itens_dtdev;
         this.empdev_cod = empdev_cod;
@@ -51,13 +54,18 @@ public class IEmpDev {
         e.setExemp_cod(exemp_cod);
 
         if (e.alterar(connection)) {
-            System.out.println("Entrou");
+            
             if (new IEmpDevDal().alterar(connection, this)) {
-                System.out.println("Entrou");
+                
                 return true;
             }
         }
 
         return false;
     }
+
+    public boolean Emprestimo(Conexao connection, Exemplar exemp, Empdev ep) {
+        return new IEmpDevDal().emprestimo(connection, exemp, ep);
+    }
+
 }

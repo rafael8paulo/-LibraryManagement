@@ -23,7 +23,6 @@ public class Pendencia {
         this.empdev_cod = empdev_cod;
     }
 
-    
     public Pendencia(int pend_cod, LocalDate pend_dtpgto, String quitada, int valor, Alunfunc alunfunc) {
         this.pend_cod = pend_cod;
         this.pend_dtpgto = pend_dtpgto;
@@ -35,7 +34,6 @@ public class Pendencia {
     public void setValor(int valor) {
         this.valor = valor;
     }
-    
     
     public int getPend_cod() {
         return pend_cod;
@@ -85,30 +83,27 @@ public class Pendencia {
         this.valor = valor;
     }
     
-    
-    
     @Override
     public String toString() {
         return "Pendencia{" + "pend_cod=" + pend_cod + ", pend_dtpgto=" + pend_dtpgto + ", quitada=" + quitada + ", valor=" + valor + ", alunfunc=" + alunfunc + '}';
     }
        
-    public List<Pendencia>carregar(Conexao connection, int filtro, String filtro2, Alunfunc alunfunc)
+    public List<Pendencia>carregar(Conexao connection, String filtro, String filtro2, Alunfunc alunfunc)
     {
         List<Pendencia> listaPend = new ArrayList();
         PendenciaDal pDal = new PendenciaDal();       
         listaPend = pDal.carregarTabela(filtro, connection,alunfunc,filtro2);
         return listaPend;
-    } 
+    }
     
     public boolean baixarPendencia(Conexao connection, int codSelecao)
     {
         PendenciaDal pDal = new PendenciaDal();  
         this.pend_cod = codSelecao;
         this.pend_dtpgto = LocalDate.now();
+        return 
         pDal.alterar(connection, valor, this);
-        return true;
     }
-    
     
     public boolean inserirPerdencia(Conexao connection){
         
@@ -116,5 +111,4 @@ public class Pendencia {
         
         return true;
     }
-    
 }

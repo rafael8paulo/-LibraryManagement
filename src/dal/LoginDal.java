@@ -3,13 +3,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Login;
+import util.Banco;
 import util.Conexao;
 
-public class LoginDal {   
+public class LoginDal { 
+    
     public List get(Login login,String filtro, Conexao connection) {
-        ArrayList<Login> lista = new ArrayList();
-        String url = "jdbc:postgresql://localhost/";
-        connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+        
+        ArrayList<Login> lista = new ArrayList();                        
+        connection.conectar();
+        
         try {
             ResultSet rs;
             String sql;

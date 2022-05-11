@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import util.Conexao;
 
-public class Privilegios 
-{
+public class Privilegios {
+
     public int per_cod;
     public String per_descricao;
     public static boolean per_incluir;
@@ -15,7 +15,7 @@ public class Privilegios
     public static boolean per_editar;
     public static boolean per_movimentar;
 
-    public Privilegios(int per_cod, String per_descricao, 
+    public Privilegios(int per_cod, String per_descricao,
             boolean per_incluir, boolean per_excluir,
             boolean per_consultar, boolean per_editar,
             boolean per_movimentar) {
@@ -29,9 +29,9 @@ public class Privilegios
     }
 
     public Privilegios() {
-        this(0,"",false,false,false,false,false);
+        this(0, "", false, false, false, false, false);
     }
-    
+
     public int getPer_cod() {
         return per_cod;
     }
@@ -87,34 +87,31 @@ public class Privilegios
     public void setPer_movimentar(boolean per_movimentar) {
         this.per_movimentar = per_movimentar;
     }
-    
+
     @Override
     public String toString() {
         return per_descricao;
     }
-    
-    public List<Privilegios> carregarPrivilegios(Conexao connection)
-    {
+
+    public List<Privilegios> carregarPrivilegios(Conexao connection) {
         PrivilegiosDal pDal = new PrivilegiosDal();
         List<Privilegios> listaCategoria = new ArrayList();
-        listaCategoria = pDal.retornarLista(this,connection,"");
+        listaCategoria = pDal.retornarLista(this, connection, "");
         return listaCategoria;
     }
-    
-    public void carregaPrivilegio(Conexao connection, String filtro)
-    {
+
+    public void carregaPrivilegio(Conexao connection, String filtro) {
         PrivilegiosDal pDal = new PrivilegiosDal();
         List<Privilegios> listaCategoria = new ArrayList();
-        listaCategoria = pDal.retornaPrivilegio(this,connection,filtro);   
+        listaCategoria = pDal.retornaPrivilegio(this, connection, filtro);
         setPer_cod(listaCategoria.get(0).getPer_cod());
         setPer_descricao(listaCategoria.get(0).getPer_descricao());
     }
-    
-        public void carregaPrivilegioById(Conexao connection, int filtro)
-    {
+
+    public void carregaPrivilegioById(Conexao connection, int filtro) {
         PrivilegiosDal pDal = new PrivilegiosDal();
         List<Privilegios> listaCategoria = new ArrayList();
-        listaCategoria = pDal.retornaPrivilegioById(this,connection,filtro);   
+        listaCategoria = pDal.retornaPrivilegioById(this, connection, filtro);
         setPer_cod(listaCategoria.get(0).getPer_cod());
         setPer_descricao(listaCategoria.get(0).getPer_descricao());
         setPer_incluir(listaCategoria.get(0).isPer_incluir());
@@ -122,6 +119,6 @@ public class Privilegios
         setPer_editar(listaCategoria.get(0).isPer_editar());
         setPer_excluir(listaCategoria.get(0).isPer_excluir());
         setPer_consultar(listaCategoria.get(0).isPer_consultar());
-        
+
     }
 }

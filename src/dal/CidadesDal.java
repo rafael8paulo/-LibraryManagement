@@ -10,9 +10,10 @@ import util.Conexao;
 public class CidadesDal {
     
     public List pesquisarCid (Cidades cid, Conexao connection, String filtro){
-        ArrayList<Alunfunc> lista = new ArrayList();
-        String url = "jdbc:postgresql://localhost/";
-        connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+        
+        ArrayList<Alunfunc> lista = new ArrayList();       
+        connection.conectar();
+        
         try {
             ResultSet rs;
             String sql;

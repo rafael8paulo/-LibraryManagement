@@ -1,5 +1,6 @@
 package applibrarymanagement;
 
+import controller.DevolucaoController;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -22,6 +23,7 @@ import model.Empdev;
 import model.IEmpDev;
 import model.Livro;
 import model.Pendencia;
+import model.Privilegios;
 import util.Alertas;
 import util.Conexao;
 
@@ -45,8 +47,9 @@ public class FXMLRealizarDevolucaoController implements Initializable {
     private TextField txtMatricula;
 
     ObservableList<Empdev> lista;
-
-    Conexao connection = new Conexao();
+    
+    Conexao connection = new Conexao();    
+    
     @FXML
     private TextField txtNome;
     @FXML
@@ -54,6 +57,13 @@ public class FXMLRealizarDevolucaoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (!Privilegios.per_incluir) {
+            btnDevolucao.setDisable(true);
+        }
+
+        if (!Privilegios.per_consultar) {
+            btnPesquisar.setDisable(true);
+        }
 
         Platform.runLater(() -> {
             txtMatricula.requestFocus();
@@ -64,45 +74,10 @@ public class FXMLRealizarDevolucaoController implements Initializable {
 
     @FXML
     private void evtBtnDevolucao(ActionEvent event) {
-
-        Alertas alertas = new Alertas();
-
+        
         int codSelecao = tbTabela.getSelectionModel().getSelectedItem().getEmpdev_cod();
-
-        IEmpDev iD = new IEmpDev(LocalDate.now());
-        iD.setEmpdev_cod(codSelecao);
-
-        Empdev e = new Empdev();
-        e.setEmpdev_cod(codSelecao);
-
-        int diasAtraso = e.consultarDiasEmAtraso(connection);
-
-        if (iD.devolucao(connection, codSelecao)) {
-            
-            alertas.mensagem1("Devolução realizada com sucesso!");
-
-            if (diasAtraso > 0) {
-
-                Configuracoes c = new Configuracoes();
-                c.exibir(connection);
-
-                double valor = (double) (c.getConf_juro() * diasAtraso) / 100;
-                valor = valor * diasAtraso;
-
-                Pendencia p = new Pendencia();
-                p.setValor(valor);
-                p.setEmpdev_cod(codSelecao);
-                p.inserirPerdencia(connection);
-
-                alertas.mensagem1(
-                        "Exemplar em atraso !! \n"
-                        + "Nova pendencia inserida no sistema, no valor de R$ "
-                        + valor);
-            }
-
-        } else {
-            alertas.mensagem1("Erro ao realizar devolução !");
-        }
+        new DevolucaoController().devolucao(codSelecao);
+        
     }
 
     @FXML

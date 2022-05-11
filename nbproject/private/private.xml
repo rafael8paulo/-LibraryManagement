@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Rafael/Desktop/-LibraryManagement/-LibraryManagement/-LibraryManagement/src/model/FormaDePagamento.java</file>
+            <file>file:/C:/Users/Rafael/Desktop/-LibraryManagement/-LibraryManagement/-LibraryManagement/src/model/Cidades.java</file>
+            <file>file:/C:/Users/Rafael/Desktop/-LibraryManagement/-LibraryManagement/-LibraryManagement/src/model/CartaoCredito.java</file>
+            <file>file:/C:/Users/Rafael/Desktop/-LibraryManagement/-LibraryManagement/-LibraryManagement/src/applibrarymanagement/FXMLQuitarController.java</file>
+            <file>file:/C:/Users/Rafael/Desktop/-LibraryManagement/-LibraryManagement/-LibraryManagement/src/controller/PendenciaController.java</file>
+            <file>file:/C:/Users/Rafael/Desktop/-LibraryManagement/-LibraryManagement/-LibraryManagement/src/model/PIX.java</file>
+            <file>file:/C:/Users/Rafael/Desktop/-LibraryManagement/-LibraryManagement/-LibraryManagement/src/model/Boleto.java</file>
+        </group>
     </open-files>
 </project-private>

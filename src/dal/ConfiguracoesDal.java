@@ -9,10 +9,9 @@ import util.Conexao;
 public class ConfiguracoesDal{
 
     public boolean gravar(Configuracoes conf, Conexao connection) {
-        String sql;
-        String url="jdbc:postgresql://localhost/";
-        try{
-            connection.conectar(url,"librarymanagement","postgres","postgres123");
+        String sql;        
+        try{            
+            connection.conectar();
             sql= "INSERT INTO configuracoes(conf_multa,conf_juros,conf_limdias)";
             sql=sql+"VALUES (#1, #2,#3)";           
             sql=sql.replace("#1",""+conf.getConf_multa());
@@ -30,9 +29,8 @@ public class ConfiguracoesDal{
     }
 
     public boolean apagar(Configuracoes conf, Conexao connection) {      
-        String sql;
-        String url="jdbc:postgresql://localhost/";
-        connection.conectar(url,"librarymanagement","postgres","postgres123");
+        String sql;        
+        connection.conectar();
         try{
             
             sql= "DELETE FROM configuracoes"; 
@@ -48,9 +46,8 @@ public class ConfiguracoesDal{
      public List get(Configuracoes conf, Conexao connection) 
      {
 
-        ArrayList<Configuracoes> lista = new ArrayList();
-        String url = "jdbc:postgresql://localhost/";
-        connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+        ArrayList<Configuracoes> lista = new ArrayList();        
+        connection.conectar();
         try {
             ResultSet rs;
             String sql;

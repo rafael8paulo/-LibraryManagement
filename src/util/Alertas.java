@@ -8,4 +8,8 @@ public class Alertas {
     {     
         JOptionPane.showMessageDialog(null,mensagem, "Library Management", JOptionPane.WARNING_MESSAGE);
     }
+    public void mensagem2(String mensagem)
+    {     
+        JOptionPane.showMessageDialog(null,mensagem, "Library Management", JOptionPane.WARNING_MESSAGE);
+    }
 }

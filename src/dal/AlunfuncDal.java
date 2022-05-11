@@ -10,8 +10,9 @@ import util.Conexao;
 public class AlunfuncDal {
     public List pesquisarAlunfunc (Alunfunc alunfunc, Conexao connection, String filtro){
         ArrayList<Alunfunc> lista = new ArrayList();
-        String url = "jdbc:postgresql://localhost/";
-        connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+
+        connection.conectar();
+        
         try {
             ResultSet rs;
             String sql;
@@ -31,9 +32,8 @@ public class AlunfuncDal {
     
     public boolean gravar(Alunfunc af, Cidades cid, Conexao connection) {
         String sql;
-        String url = "jdbc:postgresql://localhost/";
         try {
-            connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            connection.conectar();
             sql = "INSERT INTO alun_func(alunfunc_nome, alunfunc_email, "
                     + "alunfunc_telefone, alunfunc_log,alunfunc_numres, "
                     + "cid_ibge, alunfunc_tipo)";
@@ -55,8 +55,33 @@ public class AlunfuncDal {
         }
     }
     
-    
-    
-    
-    
+    public List pesquisarAlunfuncByName (Alunfunc alunfunc, Conexao connection, String filtro, Cidades cid){
+        
+        ArrayList<Alunfunc> lista = new ArrayList();        
+        connection.conectar();
+        
+        try {
+            ResultSet rs;
+            String sql;
+            sql = "SELECT * FROM alun_func WHERE alunfunc_nome like "+"'%"+filtro+"%'";
+            rs = connection.consultar(sql);
+            while (rs.next()) {
+                alunfunc.setAlf_codigo(rs.getInt("alunfunc_mat"));
+                alunfunc.setAlf_nome(rs.getString("alunfunc_nome"));
+                alunfunc.setAlf_celular(rs.getString("alunfunc_telefone"));
+                alunfunc.setAlf_tipo(rs.getString("alunfunc_tipo"));
+                alunfunc.setAlf_numres(rs.getString("alunfunc_numres"));
+                alunfunc.setAlf_logradouro(rs.getString("alunfunc_log"));
+                alunfunc.setAlf_email(rs.getString("alunfunc_email"));
+                cid.setCid_cep(rs.getInt("cid_ibge"));
+            }
+            System.out.println(sql);
+            lista.add(alunfunc);
+            return lista;
+        }
+        catch (Exception e) {
+            System.out.println("Erro ao conectar com o banco de dados" + e);
+        }
+        return null;
+    }                       
 }

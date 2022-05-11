@@ -40,19 +40,21 @@ public class FXMLLoginController implements Initializable {
 
     @FXML
     private void evtBtnEntrar(ActionEvent event) throws IOException {
+
         Conexao connection = new Conexao();
+        
         Alertas a = new Alertas();
         Login login = new Login();
         Privilegios privilegios = new Privilegios();
         login.setLogin(txtLogin.getText());
         login.setSenha(txtSenha.getText());
-        if (login.validaLogin()) 
-        {
-            if (login.logar(connection)) {                               
+
+        if (login.validaLogin()) {
+            if (login.logar(connection)) {
                 if (login.getLogin().equalsIgnoreCase(txtLogin.getText())) {
-                    if (login.getSenha().equalsIgnoreCase(txtSenha.getText())) { 
+                    if (login.getSenha().equalsIgnoreCase(txtSenha.getText())) {
                         //carregou os privilégios e setou no objeto
-                        privilegios.carregaPrivilegioById(connection,login.getPerfil());
+                        privilegios.carregaPrivilegioById(connection, login.getPerfil());
                         btnSair.getScene().getWindow().hide();
                         Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
                         Scene scene = new Scene(root);
@@ -63,14 +65,12 @@ public class FXMLLoginController implements Initializable {
                         stage.initStyle(StageStyle.UNDECORATED);
                         stage.setMaximized(true);
                         stage.showAndWait();
-                    }
-                     else {
+                    } else {
                         a.mensagem1("Credenciais não encontradas");
                     }
                 }
             }
-        } 
-         else {
+        } else {
             a.mensagem1("Dados inválidos");
         }
     }

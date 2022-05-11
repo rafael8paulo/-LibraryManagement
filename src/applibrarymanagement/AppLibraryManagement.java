@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import util.Banco;
 
 public class AppLibraryManagement extends Application {
     
@@ -42,7 +43,12 @@ public class AppLibraryManagement extends Application {
         stage.show();
     }  
     public static void main(String[] args) {
-        launch(args);
+        
+        if(!Banco.conectar()){
+            System.out.println("Problemas ao acessar o banco "+Banco.getCon().getMensagemErro());
+        }else
+            launch(args);
+        
     }
     
 }

@@ -1,12 +1,11 @@
 package model;
 
 import dal.AlunfuncDal;
-import dal.UsuariosDal;
 import java.util.ArrayList;
 import java.util.List;
 import util.Conexao;
 
-public class Alunfunc {
+public class Alunfunc implements Observer{
 
     private String alf_nome;
     public int alf_codigo;
@@ -16,6 +15,11 @@ public class Alunfunc {
     private String alf_numres;
     private String alf_tipo;
 
+    public Alunfunc(int alf_codigo) {
+        this.alf_codigo = alf_codigo;
+    }
+
+        
     public String getAlf_email() {
         return alf_email;
     }
@@ -90,10 +94,34 @@ public class Alunfunc {
         AlunfuncDal alunfuncDal = new AlunfuncDal();
         lista = alunfuncDal.pesquisarAlunfunc(this, connection, filtro);
     }
+    
+    public boolean pesquisaByName(Conexao connection, String filtro, Cidades cid)
+    {
+       AlunfuncDal alunfuncDal = new AlunfuncDal();
+       List<Alunfunc> lista = new ArrayList();
+       
+       lista = alunfuncDal.pesquisarAlunfuncByName(this, connection, filtro, cid);
+
+        if (!lista.isEmpty()) {
+            lista.get(0).getAlf_nome();
+            lista.get(0).getAlf_logradouro();
+            lista.get(0).getAlf_email();
+            lista.get(0).getAlf_celular();
+            lista.get(0).getAlf_tipo();        
+            return true;
+        } else {
+            return false;
+        }
+    }        
 
     public boolean gravar(Conexao connection, Cidades cid) {
        AlunfuncDal afDal = new AlunfuncDal();
        return afDal.gravar(this, cid, connection);
+    }
+   
+    @Override
+    public void atualizar() {
+        System.out.println("Olá "+this.alf_nome+" o livro está disponivel");
     }
 
 }

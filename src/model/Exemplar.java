@@ -1,16 +1,16 @@
 package model;
 
 import dal.ExemplarDal;
+import java.util.List;
 import util.Conexao;
 
 
-public class Exemplar {
+public class Exemplar implements Subject{
     
     private int exemp_cod;
     private String exemp_setor;
     private Status status;
     private Livro livro;
-
         
     public Exemplar(int exemp_cod, String exemp_setor, Status status, Livro livro) {
         this.exemp_cod = exemp_cod;
@@ -25,10 +25,13 @@ public class Exemplar {
         this.livro = livro;
     }
 
+    public Exemplar(int exemp_cod) {
+        this.exemp_cod = exemp_cod;
+    }        
+    
     public Exemplar() {
     }
-        
-    
+            
     public int getExemp_cod() {
         return exemp_cod;
     }
@@ -67,6 +70,47 @@ public class Exemplar {
             return true;
         
         return false;
+    }
+    
+    public boolean emprestar(Conexao connection){
+        
+        if(new ExemplarDal().emprestar(connection, this))
+            return true;
+        
+        return false;
+    }
+    
+    public boolean consultaExemplarDisponivel(Conexao connection, Livro l){
+        
+        if(new ExemplarDal().consultaExemplarDisponivel(l, connection, this))
+            return true;
+        
+        return false;
+    }
+
+    @Override
+    public boolean notificaDevolucao(Conexao connection) {
+        
+        List<Espera> lista = new Espera().listaDeEspera(this, connection);
+                
+        for(Espera e : lista){
+            e.getAlunoFunc().atualizar(); //Envia SMS ou Email
+        }
+        
+        return false;
+    }
+
+    @Override
+    public boolean novoListaEspera(Alunfunc af, Conexao connection) {
+        
+        Espera e = new Espera();
+        
+        if(e.insereLista(af, this, connection)){
+            return true;
+        }
+        
+        return false;
+        
     }
     
 }

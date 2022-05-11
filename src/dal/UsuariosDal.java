@@ -14,13 +14,13 @@ public class UsuariosDal {
         String sql;
         String url = "jdbc:postgresql://localhost/";
         try {
-            connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            //connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            connection.conectar();
             sql = "INSERT INTO usuarios(usu_login,usu_senha,usu_data, per_cod)";
             sql = sql + "VALUES ('#1', '#2','2021-11-7',#4)";
             sql = sql.replace("#1", usuarios.getUsu_login());
             sql = sql.replace("#2", usuarios.getUsu_senha());
             sql = sql.replace("#4", "" + privilegios.getPer_cod());
-            //sql=sql.replace("#3",usuarios.getData().toString());
             connection.manipular(sql);
             usuarios.usu_codigo = connection.getMaxPK("usuarios", "usu_cod");
             return true;
@@ -34,7 +34,8 @@ public class UsuariosDal {
         String sql;
         String url = "jdbc:postgresql://localhost/";
         try {
-            connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            //connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            connection.conectar();
             sql = "UPDATE usuarios set usu_senha ="+"'"+usuarios.getUsu_senha()+"',";
             sql +="usu_login='"+usuarios.getUsu_login()+"', per_cod="+privilegios.getPer_cod();
             sql +="WHERE usu_cod ="+filtro;
@@ -52,7 +53,8 @@ public class UsuariosDal {
         String sql;
         String url = "jdbc:postgresql://localhost/";
         try {
-            connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            //connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+            connection.conectar();
             sql = "DELETE FROM usuarios WHERE usu_cod = #1";
             sql = sql.replace("#1", "" + usuarios.getUsu_codigo());
             return connection.manipular(sql);
@@ -63,9 +65,10 @@ public class UsuariosDal {
     }
 
     public List get(Usuarios usuarios, String filtro, Conexao connection) {
-        ArrayList<Usuarios> lista = new ArrayList();
-        String url = "jdbc:postgresql://localhost/";
-        connection.conectar(url, "librarymanagement", "postgres", "postgres123");
+        
+        ArrayList<Usuarios> lista = new ArrayList();        
+        
+        connection.conectar();
         try {
             ResultSet rs;
             String sql;

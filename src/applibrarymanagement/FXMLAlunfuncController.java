@@ -1,7 +1,6 @@
 package applibrarymanagement;
 
 import dal.AlunfuncDal;
-import dal.CidadesDal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -24,7 +23,6 @@ public class FXMLAlunfuncController implements Initializable {
     private Button btnIncluir;
     @FXML
     private Button btnSalvar;
-    @FXML
     private Button btnExcluir;
     @FXML
     private Button btnPesquisar;
@@ -36,22 +34,18 @@ public class FXMLAlunfuncController implements Initializable {
     private TextField txtEmail;
     @FXML
     private TextField txtFone;
-    @FXML
     private TextField txtLogradouro;
-    @FXML
     private TextField txtNumresidencial;
-    @FXML
     private TextField txtCep;
-    @FXML
     private TextField txtMunicipio;
-    @FXML
     private TextField txtUf;
-    @FXML
     private ComboBox<String> cboTipos;
     @FXML
     private TextField txtPesquisa;
     @FXML
     private Button btnSair;
+    @FXML
+    private ComboBox<?> cboLivros;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,7 +61,6 @@ public class FXMLAlunfuncController implements Initializable {
         if (!Privilegios.per_consultar) {
             btnPesquisar.setDisable(true);
         }
-
     }
 
     @FXML
@@ -84,7 +77,7 @@ public class FXMLAlunfuncController implements Initializable {
         Conexao connection = new Conexao();
         AlunfuncDal afDal = new AlunfuncDal();
         Cidades cid = new Cidades();
-        
+
         if (txtCodigo.getText().equalsIgnoreCase("")) {
             if (!txtNome.getText().equalsIgnoreCase("") || !txtEmail.getText().equalsIgnoreCase("")
                     || !txtFone.getText().equalsIgnoreCase("") || !txtLogradouro.getText().equalsIgnoreCase("")
@@ -109,27 +102,47 @@ public class FXMLAlunfuncController implements Initializable {
             }
         }
         //fazer update
-
     }
 
-    @FXML
-    private void evtBtnExcluir(ActionEvent event) {
-    }
 
     @FXML
-    private void evtBtnPesquisar(ActionEvent event) {
+    private void evtBtnPesquisar(ActionEvent event) {  
+        Alertas alerta = new Alertas();
+        Conexao connection = new Conexao();
+        estadoInicial();
+        Alunfunc af = new Alunfunc();
+        Cidades cid = new Cidades();
+        btnSalvar.setDisable(false);
+        String auxiliar;
+        
+        if (txtPesquisa.getText().matches("^[a-zA-Z]+$")) {
+            auxiliar = txtPesquisa.getText();
+            if(af.pesquisaByName(connection, auxiliar, cid))
+            {
+                txtCodigo.setText(Integer.toString(af.getAlf_codigo()));
+                txtNome.setText(af.getAlf_nome());
+                txtEmail.setText(af.getAlf_email());
+                txtLogradouro.setText(af.getAlf_logradouro());
+                txtFone.setText(af.getAlf_celular());
+                txtEmail.setText(af.getAlf_email());
+                btnExcluir.setDisable(false);
+                estadoEdicao();
+            } else {
+                alerta.mensagem1("Usuário não encontrado!!!");
+                txtPesquisa.setText("");
+            }
+        } else {
+            alerta.mensagem1("Pesquise pelo nome!!!");
+        }
+        
     }
 
-    @FXML
-    private void evtcboTipos(ActionEvent event) {
-    }
 
     @FXML
     private void evtBtnSair(ActionEvent event) {
         btnSair.getScene().getWindow().hide();
     }
 
-    @FXML
     private void evtCep(ActionEvent event) {
         Cidades cid = new Cidades();
 
@@ -185,5 +198,9 @@ public class FXMLAlunfuncController implements Initializable {
         txtUf.setText("");
         txtCep.setText("");
         txtPesquisa.setText("");
+    }
+
+    @FXML
+    private void evtcboLivros(ActionEvent event) {
     }
 }
